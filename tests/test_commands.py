@@ -1,6 +1,6 @@
 import pytest
 from app import App
-from app.plugins.goodbye import GoodbyeCommand
+#from app.plugins.goodbye import GoodbyeCommand
 from app.plugins.greet import GreetCommand
 
 
