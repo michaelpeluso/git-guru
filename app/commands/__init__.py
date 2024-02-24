@@ -1,27 +1,39 @@
-from abc import ABC, abstractmethod
+import logging
 
-class Command(ABC):
-    @abstractmethod
-    def execute(self):
-        pass
+
+class Command:
+    """Base class for all command plugins, with metadata for dynamic menu generation."""
+    def __init__(self):
+        self.name = ""  # Command name for menu display
+        self.description = ""  # Command description for menu display
+
+    def execute(self, *args, **kwargs):
+        """Execute the command with given arguments."""
+        raise NotImplementedError("Command execution not implemented.")
 
 class CommandHandler:
+    """Handles registration and execution of commands."""
     def __init__(self):
         self.commands = {}
 
-    def register_command(self, command_name: str, command: Command):
-        self.commands[command_name] = command
+    def register_command(self, command):
+        """Register a command instance."""
+        if command.name in self.commands:
+            logging.warning(f"Command '{command.name}' is already registered. Overwriting.")
+        self.commands[command.name] = command
+        logging.info(f"Command '{command.name}' registered successfully.")
+    
+    def get_commands(self):
+        """Return a list of command metadata for all registered commands."""
+        return [(cmd.name, cmd.description) for cmd in self.commands.values()]
 
-    def execute_command(self, command_name: str):
-        """ Look before you leap (LBYL) - Use when its less likely to work
-        if command_name in self.commands:
-            self.commands[command_name].execute()
-        else:
-            print(f"No such command: {command_name}")
-        """
-        """Easier to ask for forgiveness than permission (EAFP) - Use when its going to most likely work"""
+    def execute_command(self, name, *args):
+        """Execute a command by name."""
+        command = self.commands.get(name)
+        if not command:
+            logging.error(f"Command '{name}' not found.")
+            return
         try:
-            self.commands[command_name].execute()
-        except KeyError:
-            print(f"No such command: {command_name}")
-
+            command.execute(*args)
+        except Exception as e:
+            logging.error(f"Error executing command '{name}': {e}")

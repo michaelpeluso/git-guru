@@ -1,8 +1,10 @@
-# Project: Agent Management System
+# Homework 1 : Create an Agent to perform as a particular job.  I did an example of history teacher and movie advisor, you need to use this repository and watch the **lecture video** [here](https://youtu.be/T2h6mSycMqg).  What I want you to do is practice writing system prompts and see how the agent will obey your commands (or not).  You should change the model to use other models to experiment but you also need to look at how much they cost:
 
-## Introduction
+* List of GPT4 Models - [here](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
+* List of GPT3.5 Models - [here](https://platform.openai.com/docs/models/gpt-3-5-turbo)
 
-This project is a template for a multi command plugin REPL app.
+* Model Pricing - PAY ATTENTION IT COSTS A LOT FOR SOME MODELS.
+[Pricing is here but scroll down and look at what GPT4 preview costs $60 for 1 million tokens](https://openai.com/pricing)
 
 ## Project Setup
 
