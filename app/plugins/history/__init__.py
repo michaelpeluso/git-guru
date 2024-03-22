@@ -9,13 +9,14 @@ from app.commands import Command
 class MovieExpertChat(Command):
     def __init__(self):
         super().__init__()
-        self.name = "movies"
-        self.description = "Interact with a Movie Expert AI to explore movie preferences."
+        self.name = "readme"
+        self.description = "Generate a custom readme."
         self.history = []
         load_dotenv()
         API_KEY = os.getenv('OPEN_AI_KEY')
         # you can try GPT4 but it costs a lot more money than the default 3.5
-        self.llm = ChatOpenAI(openai_api_key=API_KEY, model="gpt-4-0125-preview")  # Initialize once and reuse
+        self.llm = ChatOpenAI(openai_api_key=API_KEY, model="gpt-3.5-turbo")  # Initialize once and reuse
+        # chatGPT 4: "gpt-4-0125-preview"
         # This is default 3.5 chatGPT
         # self.llm = ChatOpenAI(openai_api_key=API_KEY)  # Initialize once and reuse
 
