@@ -9,7 +9,7 @@ from app.commands import Command
 class HistoryTeacherChat(Command):
     def __init__(self):
         super().__init__()
-        self.name = "history"
+        self.name = "movie"
         self.description = "This agent is pretending to be a history teacher of ancient Rome"
         self.history = []
         load_dotenv()

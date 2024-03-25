@@ -6,27 +6,28 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from app.commands import Command
 
-class MovieExpertChat(Command):
+class HistoryTeacherChat(Command):
     def __init__(self):
         super().__init__()
-        self.name = "readme"
-        self.description = "Generate a custom readme."
+        self.name = "history"
+        self.description = "This agent is pretending to be a history teacher of ancient Rome"
         self.history = []
         load_dotenv()
         API_KEY = os.getenv('OPEN_AI_KEY')
         # you can try GPT4 but it costs a lot more money than the default 3.5
         self.llm = ChatOpenAI(openai_api_key=API_KEY, model="gpt-3.5-turbo")  # Initialize once and reuse
-        # chatGPT 4: "gpt-4-0125-preview"
+        # ChatGPT 4 : "gpt-4-0125-preview"
         # This is default 3.5 chatGPT
         # self.llm = ChatOpenAI(openai_api_key=API_KEY)  # Initialize once and reuse
 
     def calculate_tokens(self, text):
         # More accurate token calculation mimicking OpenAI's approach
-        return len(text) + text.count(' ')
+        return len(text)
 
     def interact_with_ai(self, user_input, character_name):
         # Generate a more conversational and focused prompt
-        prompt_text = "You're a Movie Expert AI. Engage the user in a natural conversation about their movie preferences. Use your insights to recommend movies they might like."
+        era = '17th century england'
+        prompt_text = f"Imagine you are a distinguished teacher with a deep knowledge of {era}, tasked with guiding a learner's exploration of this subject. Begin the interaction by posing an initial question that covers a foundational aspect of {era} history, ensuring it is accessible for a broad range of knowledge levels. Based on the learner's response, if they answer correctly, increase the complexity of the next question to challenge them further. Conversely, if the answer is incorrect, maintain or slightly decrease the difficulty to build their confidence and understanding. Proceed with this adaptive approach through three questions, each time providing feedback that includes corrections or additional insights as necessary. After the third question, offer a comprehensive assessment of their performance, highlighting their strengths, areas for improvement, and encouragement for their continued learning and curiosity about {era} history."
         prompt = ChatPromptTemplate.from_messages(self.history + [("system", prompt_text)])
         
         output_parser = StrOutputParser()
@@ -41,7 +42,7 @@ class MovieExpertChat(Command):
 
     def execute(self, *args, **kwargs):
         character_name = kwargs.get("character_name", "Movie Expert")
-        print(f"Welcome to the Movie Expert Chat! Let's talk about your movie preferences. Type 'done' to exit anytime.")
+        print(f"This your Roman history teacher")
 
         while True:
             user_input = input("You: ").strip()

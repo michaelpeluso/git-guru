@@ -21,7 +21,7 @@ class CommandHandler:
         if command.name in self.commands:
             logging.warning(f"Command '{command.name}' is already registered. Overwriting.")
         self.commands[command.name] = command
-        logging.info(f"Command '{command.name}' registered successfully.")
+        #logging.info(f"Command '{command.name}' registered successfully.")
     
     def get_commands(self):
         """Return a list of command metadata for all registered commands."""
