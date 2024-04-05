@@ -3,6 +3,7 @@
 .pytest_cache
 *__pycache__
 .env
-venv
+amsenv
+.venv
 logs
 .vscode

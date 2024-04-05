@@ -23,7 +23,7 @@ class ReadMeChat(Command):
         self.files = []
         self.repo = None
         self.curr_repo_size = 0
-        self.max_repo_size = 1 * 1024 * 1024 # 100 megabytes
+        self.max_repo_size = 2 ** 10 # 1 megabyte
 
         load_dotenv()
 
@@ -143,12 +143,12 @@ class ReadMeChat(Command):
     def download_repository(self):
         if self.repo == None :
             print("ERROR: Not connected to a repository. Use 'url' to connect to one.")
-            return
+            return False
         
         if self.repo.size > self.max_repo_size :
             print(f"ERROR: This repository exceeds the maximum download limit of 100 Megabytes ({self.repo.size}/{self.max_repo_size}).")
             print(f"Use 'download <filename/directory> <filename/directory> ...' to select specific files.")
-            return
+            return False
         
         # Clear local directory or create one if it doesn't exist
         local_dir = "./local_repo"
@@ -157,7 +157,9 @@ class ReadMeChat(Command):
         os.makedirs(local_dir, exist_ok=True)
 
         # Download files recursively
-        self.recursive_download(self.repo.get_contents(""), local_dir)
+        if not self.recursive_download(self.repo.get_contents(""), local_dir) :
+            return False # terminate recursion
+        return True
 
     # walk through directories
     def recursive_download(self, contents, local_dir) :
@@ -172,7 +174,7 @@ class ReadMeChat(Command):
                     # check if files exceed 100 Mbs
                     file_size = int(file.size)
                     if self.curr_repo_size + file_size > self.max_repo_size :
-                        print(f"ERROR: Download limit exceeded: {self.max_repo_size} megabytes.")
+                        print(f"ERROR: Download limit exceeded: {self.max_repo_size} bytes.")
                         self.curr_repo_size += file_size
                         return
 
