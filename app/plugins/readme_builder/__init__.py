@@ -8,7 +8,6 @@ import re
 
 from .utils import Utils
 from .repo_retrieval import RepoRetrieval
-from .builder import Builder
 
 utl = Utils() # for utility functions
 rr = RepoRetrieval() # for github retrieval
