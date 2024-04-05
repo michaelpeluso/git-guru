@@ -1,8 +1,0 @@
-*.sw*
-.coverage
-.pytest_cache
-*__pycache__
-.env
-venv
-logs
-.vscode
