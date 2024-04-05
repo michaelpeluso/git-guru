@@ -124,7 +124,17 @@ class ReadMeChat(Command):
         try :
             self.repo = self.git.get_user(user).get_repo(repo_name)
             print(f"Successfully connected to {repo_name}")
-            print(f"repo size: {self.repo.size}")
+            
+            size_in_bytes = self.repo.size
+            
+            # Determine the most reasonable unit
+            units = ['bytes', 'KB', 'MB', 'GB', 'TB']
+            unit_index = 0
+            while size_in_bytes >= 1024 and unit_index < len(units) - 1:
+                size_in_bytes /= 1024
+                unit_index += 1
+
+            print(f"repo size: {size_in_bytes:.3f} {units[unit_index]}")
 
         except Exception or GithubException as e:
             print(f"Error: Unable to access repository.")
@@ -170,7 +180,7 @@ class ReadMeChat(Command):
                     try :
                         file_url = file.download_url
                         response = requests.get(file_url)
-                        with open(os.path.join(local_dir, file.name), 'wb') as f:
+                        with open(os.path.join(local_dir, file.name), 'wb') as f :
                             f.write(response.content)
                             self.curr_repo_size += int(file.size)
                     except Exception or GithubException as e :
