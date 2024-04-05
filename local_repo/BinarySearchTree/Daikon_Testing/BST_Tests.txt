@@ -1,0 +1,861 @@
+===========================================================================
+BST_Tests.main(java.lang.String[]):::ENTER
+args has only one value
+args.getClass().getName() == java.lang.String[].class
+args[] == []
+args[].toString == []
+===========================================================================
+BST_Tests.main(java.lang.String[]):::EXIT
+args[] == orig(args[])
+args[] == []
+args[].toString == []
+===========================================================================
+BinarySearchTree:::OBJECT
+this.root == BinaryTree.this.root
+this.root.data.getClass().getName() == this.root.left.data.getClass().getName()
+this.root.data.getClass().getName() == this.root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == this.root.right.data.getClass().getName()
+this.root.data != null
+this.root.left.data != null
+BinaryTree.this.getClass().getName() == BinarySearchTree.class
+this.root.right.data != null
+BinaryTree.this.root != null
+this.root.data.getClass().getName() != BinaryTree.this.getClass().getName()
+this.root.left.data.getClass().getName() != BinaryTree.this.getClass().getName()
+BinaryTree.this.getClass().getName() != this.root.right.data.getClass().getName()
+===========================================================================
+BinarySearchTree.BinarySearchTree():::EXIT
+this.root == null
+===========================================================================
+BinarySearchTree.insert(java.lang.Comparable):::ENTER
+this.root.data.getClass().getName() == data.getClass().getName()
+this.root.left.data.getClass().getName() == data.getClass().getName()
+this.root.right.data.getClass().getName() == data.getClass().getName()
+data != null
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinarySearchTree.insert(java.lang.Comparable):::EXIT
+this.root == orig(BinaryTree.this.root)
+this.root.data == orig(this.root.data)
+this.root.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left.data == orig(this.root.left.data)
+this.root.left.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(data.getClass().getName())
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(data.getClass().getName())
+this.root != null
+this.root.left.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.left.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.right.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(data.getClass().getName())
+this.root.right.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+===========================================================================
+BinarySearchTree.lowestValue(BinaryTree$Node):::ENTER
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this has only one value
+this.root has only one value
+this.root != null
+this.root.data.getClass().getName() == java.lang.Integer.class
+this.root.left has only one value
+this.root.left != null
+this.root.left.left has only one value
+this.root.left.left != null
+this.root.left.right has only one value
+this.root.left.right != null
+BinaryTree.this has only one value
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+root != null
+root.data != null
+root.left.data != null
+root.left.data.getClass().getName() == java.lang.Integer.class
+root.right.data != null
+root.right.data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+===========================================================================
+BinarySearchTree.lowestValue(BinaryTree$Node):::EXIT
+this.root == orig(this.root)
+this.root == orig(BinaryTree.this.root)
+this.root.data == orig(this.root.data)
+this.root.data.getClass().getName() == return.getClass().getName()
+this.root.left == orig(this.root.left)
+this.root.left.data == orig(this.root.left.data)
+this.root.left.data.getClass().getName() == return.getClass().getName()
+this.root.left.left == orig(this.root.left.left)
+this.root.left.right == orig(this.root.left.right)
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right == orig(this.root.right)
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == return.getClass().getName()
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == orig(this.root.right.right)
+return.getClass().getName() == orig(this.root.data.getClass().getName())
+return.getClass().getName() == orig(this.root.left.data.getClass().getName())
+return.getClass().getName() == orig(root.data.getClass().getName())
+return.getClass().getName() == orig(root.left.data.getClass().getName())
+return.getClass().getName() == orig(root.right.data.getClass().getName())
+this.root has only one value
+this.root != null
+this.root.left has only one value
+this.root.left != null
+this.root.left.left has only one value
+this.root.left.left != null
+this.root.left.right has only one value
+this.root.left.right != null
+BinaryTree.this has only one value
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+return != null
+return.getClass().getName() == java.lang.Integer.class
+BinaryTree.this.getClass().getName() != return.getClass().getName()
+BinaryTree.this.getClass().getName() != orig(root.left.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(root.right.data.getClass().getName())
+===========================================================================
+BinarySearchTree.privateInsert(BinaryTree$Node, java.lang.Comparable):::ENTER
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.data.getClass().getName() == data.getClass().getName()
+this.root.left.data.getClass().getName() == root.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == data.getClass().getName()
+this.root.right.data.getClass().getName() == root.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == data.getClass().getName()
+root.data.getClass().getName() == root.left.data.getClass().getName()
+root.data.getClass().getName() == root.right.data.getClass().getName()
+root.data.getClass().getName() == data.getClass().getName()
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == data.getClass().getName()
+root.right.data.getClass().getName() == data.getClass().getName()
+root.data != null
+root.left.data != null
+root.right.data != null
+data != null
+BinaryTree.this.getClass().getName() != root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinarySearchTree.privateInsert(BinaryTree$Node, java.lang.Comparable):::EXIT16
+this.root == orig(BinaryTree.this.root)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+root.data.getClass().getName() == orig(data.getClass().getName())
+return == orig(root)
+this.root != null
+===========================================================================
+BinarySearchTree.privateInsert(BinaryTree$Node, java.lang.Comparable):::EXIT8
+this.root.left == orig(this.root.left)
+this.root.left.left == orig(this.root.left.left)
+this.root.left.right == orig(this.root.left.right)
+this.root.right == orig(this.root.right)
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == orig(this.root.right.right)
+return.data == orig(data)
+return.left == return.right
+return.left == orig(root)
+return.left == null
+===========================================================================
+BinarySearchTree.privateInsert(BinaryTree$Node, java.lang.Comparable):::EXIT
+this.root == orig(this.root)
+this.root.data == orig(this.root.data)
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.data.getClass().getName() == return.data.getClass().getName()
+this.root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.data.getClass().getName() == orig(root.right.data.getClass().getName())
+this.root.left.data == orig(this.root.left.data)
+this.root.left.data.getClass().getName() == root.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == return.data.getClass().getName()
+this.root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(root.right.data.getClass().getName())
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == root.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == return.data.getClass().getName()
+this.root.right.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+BinaryTree.this.root == orig(BinaryTree.this.root)
+root.data == return.data
+root.data == orig(root.data)
+root.data.getClass().getName() == root.left.data.getClass().getName()
+root.data.getClass().getName() == root.right.data.getClass().getName()
+root.data.getClass().getName() == return.data.getClass().getName()
+root.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+root.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+root.data.getClass().getName() == orig(root.data.getClass().getName())
+root.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.left == return.left
+root.left.data == return.left.data
+root.left.data == orig(root.left.data)
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == return.data.getClass().getName()
+root.left.data.getClass().getName() == return.left.data.getClass().getName()
+root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+root.left.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.left.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.left.left == return.left.left
+root.left.right == return.left.right
+root.right == return.right
+root.right.data == return.right.data
+root.right.data == orig(root.right.data)
+root.right.data.getClass().getName() == return.data.getClass().getName()
+root.right.data.getClass().getName() == return.right.data.getClass().getName()
+root.right.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+root.right.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.right.left == return.right.left
+root.right.right == return.right.right
+return.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+return.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+return.data.getClass().getName() == orig(root.left.data.getClass().getName())
+return.data.getClass().getName() == orig(root.right.data.getClass().getName())
+return.data.getClass().getName() == orig(data.getClass().getName())
+(orig(root) != null)  ==>  (BinaryTree.this.getClass().getName() != orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (BinaryTree.this.getClass().getName() != orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (BinaryTree.this.getClass().getName() != root.data.getClass().getName())
+(orig(root) != null)  ==>  (BinaryTree.this.getClass().getName() != root.left.data.getClass().getName())
+(orig(root) != null)  ==>  (BinaryTree.this.getClass().getName() != root.right.data.getClass().getName())
+(orig(root) != null)  ==>  (orig(BinaryTree.this.getClass().getName()) != orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (orig(BinaryTree.this.getClass().getName()) != orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (orig(root.left.data) != null)
+(orig(root) != null)  ==>  (orig(root.left.data.getClass().getName()) == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (orig(root.right.data) != null)
+(orig(root) != null)  ==>  (orig(this.root.left.data.getClass().getName()) == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (orig(this.root.left.data.getClass().getName()) == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (orig(this.root.right.data.getClass().getName()) == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (orig(this.root.right.data.getClass().getName()) == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (return == orig(root))
+(orig(root) != null)  ==>  (return.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (return.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.data != null)
+(orig(root) != null)  ==>  (root.data == return.data)
+(orig(root) != null)  ==>  (root.data.getClass().getName() != orig(BinaryTree.this.getClass().getName()))
+(orig(root) != null)  ==>  (root.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.data.getClass().getName() == orig(this.root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.data.getClass().getName() == orig(this.root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.data.getClass().getName() == return.data.getClass().getName())
+(orig(root) != null)  ==>  (root.data.getClass().getName() == root.left.data.getClass().getName())
+(orig(root) != null)  ==>  (root.data.getClass().getName() == root.right.data.getClass().getName())
+(orig(root) != null)  ==>  (root.left == return.left)
+(orig(root) != null)  ==>  (root.left.data != null)
+(orig(root) != null)  ==>  (root.left.data == orig(root.left.data))
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() != orig(BinaryTree.this.getClass().getName()))
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() == return.data.getClass().getName())
+(orig(root) != null)  ==>  (root.left.data.getClass().getName() == root.right.data.getClass().getName())
+(orig(root) != null)  ==>  (root.right == return.right)
+(orig(root) != null)  ==>  (root.right.data != null)
+(orig(root) != null)  ==>  (root.right.data == orig(root.right.data))
+(orig(root) != null)  ==>  (root.right.data.getClass().getName() != orig(BinaryTree.this.getClass().getName()))
+(orig(root) != null)  ==>  (root.right.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.right.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.right.data.getClass().getName() == orig(this.root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (root.right.data.getClass().getName() == return.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root != null)
+(orig(root) != null)  ==>  (this.root.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (this.root.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (this.root.data.getClass().getName() == root.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.data.getClass().getName() == root.left.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.data.getClass().getName() == root.right.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.left.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (this.root.left.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (this.root.left.data.getClass().getName() == root.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.left.data.getClass().getName() == root.left.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.left.data.getClass().getName() == root.right.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.right.data.getClass().getName() == orig(root.left.data.getClass().getName()))
+(orig(root) != null)  ==>  (this.root.right.data.getClass().getName() == orig(root.right.data.getClass().getName()))
+(orig(root) != null)  ==>  (this.root.right.data.getClass().getName() == root.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.right.data.getClass().getName() == root.left.data.getClass().getName())
+(orig(root) != null)  ==>  (this.root.right.data.getClass().getName() == root.right.data.getClass().getName())
+(orig(root) == null)  ==>  (return.data == orig(data))
+(orig(root) == null)  ==>  (return.left == null)
+(orig(root) == null)  ==>  (return.left == orig(root))
+(orig(root) == null)  ==>  (return.left == return.right)
+(orig(root) == null)  ==>  (return.right == null)
+(orig(root) == null)  ==>  (this.root.left == orig(this.root.left))
+(orig(root) == null)  ==>  (this.root.left.left == orig(this.root.left.left))
+(orig(root) == null)  ==>  (this.root.left.right == orig(this.root.left.right))
+(orig(root) == null)  ==>  (this.root.right == orig(this.root.right))
+(orig(root) == null)  ==>  (this.root.right.left == orig(this.root.right.left))
+(orig(root) == null)  ==>  (this.root.right.right == orig(this.root.right.right))
+root.data != null
+root.left.data != null
+root.right.data != null
+return != null
+return.data != null
+this.root.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+this.root.left.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+BinaryTree.this.getClass().getName() != root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != return.data.getClass().getName()
+BinaryTree.this.getClass().getName() != orig(this.root.left.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.right.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(root.left.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+root.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+root.left.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+root.right.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+return.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+===========================================================================
+BinarySearchTree.privateRemove(BinaryTree$Node, java.lang.Comparable):::ENTER
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.data.getClass().getName() == data.getClass().getName()
+this.root.left.data.getClass().getName() == root.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == data.getClass().getName()
+this.root.right.data.getClass().getName() == root.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == data.getClass().getName()
+root.data.getClass().getName() == root.left.data.getClass().getName()
+root.data.getClass().getName() == root.right.data.getClass().getName()
+root.data.getClass().getName() == data.getClass().getName()
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == data.getClass().getName()
+root.right.data.getClass().getName() == data.getClass().getName()
+this.root.data.getClass().getName() == java.lang.Integer.class
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+root.data != null
+root.data.getClass().getName() == java.lang.Integer.class
+root.left.data != null
+root.left.data.getClass().getName() == java.lang.Integer.class
+root.right.data != null
+root.right.data.getClass().getName() == java.lang.Integer.class
+data != null
+data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this.getClass().getName() != root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinarySearchTree.privateRemove(BinaryTree$Node, java.lang.Comparable):::EXIT25
+this.root.data == orig(this.root.data)
+this.root.left.data == orig(this.root.left.data)
+this.root.left.left == orig(this.root.left.left)
+this.root.right == orig(this.root.right)
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == return
+return == orig(root)
+BinaryTree.this has only one value
+BinaryTree.this.root has only one value
+return == null
+===========================================================================
+BinarySearchTree.privateRemove(BinaryTree$Node, java.lang.Comparable):::EXIT35
+this.root == orig(BinaryTree.this.root)
+this.root.data == orig(this.root.data)
+this.root.left.data == orig(this.root.left.data)
+this.root.left.left == orig(this.root.left.left)
+this.root.right == orig(this.root.right)
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == root.left
+root.data == orig(root.data)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+root.left == orig(root.left)
+root.right == return
+root.right.data == return.data
+root.right.left == return.left
+root.right.right == return.right
+return == orig(root.right)
+return.data == orig(root.right.data)
+return.left == orig(root.right.left)
+return.right == orig(root.right.right)
+this.root != null
+this.root.left.left != null
+this.root.left.right has only one value
+this.root.left.right != null
+BinaryTree.this has only one value
+root.left == null
+orig(root) != null
+===========================================================================
+BinarySearchTree.privateRemove(BinaryTree$Node, java.lang.Comparable):::EXIT37
+this.root == orig(BinaryTree.this.root)
+this.root.data == orig(this.root.data)
+this.root.left.data == orig(this.root.left.data)
+this.root.left.left == orig(this.root.left.left)
+this.root.right == orig(this.root.right)
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == root.right
+root.data == orig(root.data)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+root.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+root.left == return
+root.left.data == return.data
+root.left.left == return.left
+root.left.right == return.right
+root.right == orig(root.right)
+return == orig(root.left)
+return.data == orig(root.left.data)
+return.left == orig(root.left.left)
+return.right == orig(root.left.right)
+this.root != null
+this.root.left != null
+root.right == null
+return != null
+orig(root) != null
+===========================================================================
+BinarySearchTree.privateRemove(BinaryTree$Node, java.lang.Comparable):::EXIT42
+this.root == orig(BinaryTree.this.root)
+root.data == return.data
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+root.left == return.left
+root.left.data == return.left.data
+root.left.left == return.left.left
+root.left.right == return.left.right
+root.right == return.right
+root.right.data == return.right.data
+root.right.left == return.right.left
+root.right.right == return.right.right
+return == orig(root)
+this.root has only one value
+this.root != null
+BinaryTree.this has only one value
+return != null
+orig(this) has only one value
+===========================================================================
+BinarySearchTree.privateRemove(BinaryTree$Node, java.lang.Comparable):::EXIT
+this.root == orig(this.root)
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.data.getClass().getName() == return.data.getClass().getName()
+this.root.data.getClass().getName() == return.left.data.getClass().getName()
+this.root.data.getClass().getName() == return.right.data.getClass().getName()
+this.root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.data.getClass().getName() == orig(root.right.data.getClass().getName())
+this.root.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left == orig(this.root.left)
+this.root.left.data.getClass().getName() == root.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == return.data.getClass().getName()
+this.root.left.data.getClass().getName() == return.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == return.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(root.right.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left.right == orig(this.root.left.right)
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == root.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == return.data.getClass().getName()
+this.root.right.data.getClass().getName() == return.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == return.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(data.getClass().getName())
+this.root.right.right == orig(this.root.right.right)
+BinaryTree.this.root == orig(BinaryTree.this.root)
+root.data.getClass().getName() == root.left.data.getClass().getName()
+root.data.getClass().getName() == root.right.data.getClass().getName()
+root.data.getClass().getName() == return.data.getClass().getName()
+root.data.getClass().getName() == return.left.data.getClass().getName()
+root.data.getClass().getName() == return.right.data.getClass().getName()
+root.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+root.data.getClass().getName() == orig(root.data.getClass().getName())
+root.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.data.getClass().getName() == orig(data.getClass().getName())
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == return.data.getClass().getName()
+root.left.data.getClass().getName() == return.left.data.getClass().getName()
+root.left.data.getClass().getName() == return.right.data.getClass().getName()
+root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+root.left.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.left.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.left.data.getClass().getName() == orig(data.getClass().getName())
+root.right.data.getClass().getName() == return.data.getClass().getName()
+root.right.data.getClass().getName() == return.left.data.getClass().getName()
+root.right.data.getClass().getName() == return.right.data.getClass().getName()
+root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+root.right.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.right.data.getClass().getName() == orig(data.getClass().getName())
+return.data.getClass().getName() == return.left.data.getClass().getName()
+return.data.getClass().getName() == return.right.data.getClass().getName()
+return.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+return.data.getClass().getName() == orig(root.left.data.getClass().getName())
+return.data.getClass().getName() == orig(root.right.data.getClass().getName())
+return.data.getClass().getName() == orig(data.getClass().getName())
+return.left.data.getClass().getName() == return.right.data.getClass().getName()
+return.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+return.left.data.getClass().getName() == orig(root.left.data.getClass().getName())
+return.left.data.getClass().getName() == orig(root.right.data.getClass().getName())
+return.left.data.getClass().getName() == orig(data.getClass().getName())
+return.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+return.right.data.getClass().getName() == orig(root.left.data.getClass().getName())
+return.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+return.right.data.getClass().getName() == orig(data.getClass().getName())
+this.root.data.getClass().getName() == java.lang.Integer.class
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+root.data != null
+root.data.getClass().getName() == java.lang.Integer.class
+root.left.data != null
+root.left.data.getClass().getName() == java.lang.Integer.class
+root.right.data != null
+root.right.data.getClass().getName() == java.lang.Integer.class
+return.data != null
+return.data.getClass().getName() == java.lang.Integer.class
+return.left.data != null
+return.left.data.getClass().getName() == java.lang.Integer.class
+return.right.data != null
+return.right.data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this.getClass().getName() != root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != return.data.getClass().getName()
+BinaryTree.this.getClass().getName() != return.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != return.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != orig(this.root.right.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(root.left.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(root.right.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(data.getClass().getName())
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::ENTER
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.data.getClass().getName() == data.getClass().getName()
+this.root.left.data.getClass().getName() == root.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == data.getClass().getName()
+this.root.right.data.getClass().getName() == root.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == data.getClass().getName()
+root.data.getClass().getName() == root.left.data.getClass().getName()
+root.data.getClass().getName() == root.right.data.getClass().getName()
+root.data.getClass().getName() == data.getClass().getName()
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == data.getClass().getName()
+root.right.data.getClass().getName() == data.getClass().getName()
+root.data != null
+root.left.data != null
+root.right.data != null
+data != null
+BinaryTree.this.getClass().getName() != root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT60
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this has only one value
+return == false
+orig(root) == null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT60;condition="not(return == true)"
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT63
+this.root == orig(BinaryTree.this.root)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root != null
+this.root.left.left != null
+root.left.data.getClass().getName() == java.lang.Integer.class
+root.right.data.getClass().getName() == java.lang.Integer.class
+return == true
+orig(root) != null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT63;condition="return == true"
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT66
+this.root == orig(BinaryTree.this.root)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+(return == true)  ==>  (root.right != null)
+(return == true)  ==>  (this.root.left.left != null)
+this.root != null
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+this.root.left.right has only one value
+this.root.left.right != null
+BinaryTree.this has only one value
+root.left.data.getClass().getName() == java.lang.Integer.class
+orig(root) != null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT66;condition="return == true"
+root.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.right != null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT66;condition="not(return == true)"
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT69
+this.root == orig(BinaryTree.this.root)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+(return == false)  ==>  (BinaryTree.this has only one value)
+(return == false)  ==>  (orig(this) has only one value)
+(return == false)  ==>  (root.data.getClass().getName() == java.lang.Integer.class)
+(return == false)  ==>  (root.left.data.getClass().getName() == java.lang.Integer.class)
+(return == false)  ==>  (this.root has only one value)
+(return == false)  ==>  (this.root.left.data.getClass().getName() == java.lang.Integer.class)
+(return == true)  ==>  (root.left != null)
+(return == true)  ==>  (this.root.left != null)
+(return == true)  ==>  (this.root.left.left != null)
+this.root != null
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+root.right.data.getClass().getName() == java.lang.Integer.class
+orig(root) != null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT69;condition="return == true"
+root.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+root.data.getClass().getName() == orig(root.left.data.getClass().getName())
+this.root.left != null
+root.left != null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT69;condition="not(return == true)"
+this.root has only one value
+root.data.getClass().getName() == java.lang.Integer.class
+orig(this) has only one value
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT
+this.root == orig(this.root)
+this.root.data == orig(this.root.data)
+this.root.data.getClass().getName() == root.data.getClass().getName()
+this.root.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left == orig(this.root.left)
+this.root.left.data == orig(this.root.left.data)
+this.root.left.data.getClass().getName() == root.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.left.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left.left == orig(this.root.left.left)
+this.root.left.right == orig(this.root.left.right)
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right == orig(this.root.right)
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == root.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.left.data.getClass().getName()
+this.root.right.data.getClass().getName() == root.right.data.getClass().getName()
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(data.getClass().getName())
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == orig(this.root.right.right)
+BinaryTree.this.root == orig(BinaryTree.this.root)
+root.data == orig(root.data)
+root.data.getClass().getName() == root.left.data.getClass().getName()
+root.data.getClass().getName() == root.right.data.getClass().getName()
+root.data.getClass().getName() == orig(root.data.getClass().getName())
+root.data.getClass().getName() == orig(data.getClass().getName())
+root.left == orig(root.left)
+root.left.data == orig(root.left.data)
+root.left.data.getClass().getName() == root.right.data.getClass().getName()
+root.left.data.getClass().getName() == orig(root.left.data.getClass().getName())
+root.left.data.getClass().getName() == orig(data.getClass().getName())
+root.left.left == orig(root.left.left)
+root.left.right == orig(root.left.right)
+root.right == orig(root.right)
+root.right.data == orig(root.right.data)
+root.right.data.getClass().getName() == orig(root.right.data.getClass().getName())
+root.right.data.getClass().getName() == orig(data.getClass().getName())
+root.right.left == orig(root.right.left)
+root.right.right == orig(root.right.right)
+(return == false)  ==>  (BinaryTree.this has only one value)
+(return == false)  ==>  (root.left.data.getClass().getName() == java.lang.Integer.class)
+(return == false)  ==>  (this.root.left.data.getClass().getName() == java.lang.Integer.class)
+(return == true)  ==>  (orig(root) != null)
+(return == true)  ==>  (this.root != null)
+(return == true)  ==>  (this.root.left.left != null)
+root.data != null
+root.left.data != null
+root.right.data != null
+BinaryTree.this.getClass().getName() != root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.left.data.getClass().getName()
+BinaryTree.this.getClass().getName() != root.right.data.getClass().getName()
+BinaryTree.this.getClass().getName() != orig(data.getClass().getName())
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT;condition="return == true"
+this.root == orig(BinaryTree.this.root)
+root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root != null
+this.root.left.left != null
+return == true
+orig(root) != null
+===========================================================================
+BinarySearchTree.privateSearch(BinaryTree$Node, java.lang.Comparable):::EXIT;condition="not(return == true)"
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this has only one value
+root.left.data.getClass().getName() == java.lang.Integer.class
+return == false
+===========================================================================
+BinarySearchTree.remove(java.lang.Comparable):::ENTER
+this.root.data.getClass().getName() == data.getClass().getName()
+this.root.left.data.getClass().getName() == data.getClass().getName()
+this.root.right.data.getClass().getName() == data.getClass().getName()
+this.root.data.getClass().getName() == java.lang.Integer.class
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+data != null
+data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinarySearchTree.remove(java.lang.Comparable):::EXIT
+this.root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left.right == orig(this.root.left.right)
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(data.getClass().getName())
+this.root.right.right == orig(this.root.right.right)
+this.root.data.getClass().getName() == java.lang.Integer.class
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this has only one value
+this.root.right.data.getClass().getName() == java.lang.Integer.class
+this.root.right.right == null
+this.root.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+this.root.left.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.left.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(this.root.right.data.getClass().getName())
+BinaryTree.this.getClass().getName() != orig(data.getClass().getName())
+this.root.right.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+===========================================================================
+BinarySearchTree.search(java.lang.Comparable):::ENTER
+this.root.data.getClass().getName() == data.getClass().getName()
+this.root.left.data.getClass().getName() == data.getClass().getName()
+this.root.right.data.getClass().getName() == data.getClass().getName()
+data != null
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinarySearchTree.search(java.lang.Comparable):::EXIT
+this.root == orig(this.root)
+this.root.data == orig(this.root.data)
+this.root.data.getClass().getName() == orig(this.root.data.getClass().getName())
+this.root.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left == orig(this.root.left)
+this.root.left.data == orig(this.root.left.data)
+this.root.left.data.getClass().getName() == orig(this.root.left.data.getClass().getName())
+this.root.left.data.getClass().getName() == orig(data.getClass().getName())
+this.root.left.left == orig(this.root.left.left)
+this.root.left.right == orig(this.root.left.right)
+BinaryTree.this == orig(BinaryTree.this)
+BinaryTree.this.getClass().getName() == orig(BinaryTree.this.getClass().getName())
+this.root.right == orig(this.root.right)
+this.root.right.data == orig(this.root.right.data)
+this.root.right.data.getClass().getName() == orig(this.root.right.data.getClass().getName())
+this.root.right.data.getClass().getName() == orig(data.getClass().getName())
+this.root.right.left == orig(this.root.right.left)
+this.root.right.right == orig(this.root.right.right)
+BinaryTree.this.root == orig(BinaryTree.this.root)
+(return == false)  ==>  (BinaryTree.this has only one value)
+(return == false)  ==>  (this.root.left.data.getClass().getName() == java.lang.Integer.class)
+(return == true)  ==>  (this.root != null)
+(return == true)  ==>  (this.root.left.left != null)
+BinaryTree.this.getClass().getName() != orig(data.getClass().getName())
+===========================================================================
+BinarySearchTree.search(java.lang.Comparable):::EXIT;condition="return == true"
+this.root == orig(BinaryTree.this.root)
+orig(this.root.data.getClass().getName()) == orig(data.getClass().getName())
+this.root != null
+this.root.left.left != null
+return == true
+===========================================================================
+BinarySearchTree.search(java.lang.Comparable):::EXIT;condition="not(return == true)"
+this.root.left.data.getClass().getName() == java.lang.Integer.class
+BinaryTree.this has only one value
+return == false
+===========================================================================
+BinaryTree$Node:::OBJECT
+this.data.getClass().getName() == BinaryTree.this.root.data.getClass().getName()
+this.data != null
+this.left == null
+this.right == null
+BinaryTree.this.root.data != null
+===========================================================================
+BinaryTree$Node.Node(BinaryTree, java.lang.Object):::ENTER
+BinaryTree.this.root.data.getClass().getName() == data.getClass().getName()
+BinaryTree.this != null
+BinaryTree.this.getClass().getName() == BinarySearchTree.class
+BinaryTree.this.root.data != null
+data != null
+BinaryTree.this.getClass().getName() != BinaryTree.this.root.data.getClass().getName()
+BinaryTree.this.getClass().getName() != data.getClass().getName()
+===========================================================================
+BinaryTree$Node.Node(BinaryTree, java.lang.Object):::EXIT
+this.data == orig(data)
+this.data.getClass().getName() == orig(BinaryTree.this.root.data.getClass().getName())
+this.data.getClass().getName() == orig(data.getClass().getName())
+BinaryTree.this.root.data == orig(BinaryTree.this.root.data)
+BinaryTree.this.root.data.getClass().getName() == orig(BinaryTree.this.root.data.getClass().getName())
+BinaryTree.this.root.left == orig(BinaryTree.this.root.left)
+BinaryTree.this.root.right == orig(BinaryTree.this.root.right)
+this.data.getClass().getName() != orig(BinaryTree.this.getClass().getName())
+===========================================================================
+BinaryTree:::OBJECT
+this.getClass().getName() == BinarySearchTree.class
+this.root == null
+===========================================================================
+BinaryTree.BinaryTree():::EXIT

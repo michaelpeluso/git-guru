@@ -7,3 +7,7 @@ amsenv/
 .venv
 logs
 .vscode
+
+chroma_*
+chroma
+.DS_Store
