@@ -11,19 +11,19 @@ from github import GithubException
 import re
 import requests
 import shutil
+import json
 
 
 class ReadMeChat(Command):
     def __init__(self):
         super().__init__()
+        self.history = []
         self.name = "readme"
         self.description = "Generate a custom readme."
+        self.local_dir = "./local_repo"
         self.git = None
-        self.history = []
-        self.files = []
         self.repo = None
-        self.curr_repo_size = 0
-        self.max_repo_size = 2 ** 10 # 1 megabyte
+        self.max_repo_size = 2 ** 30 # 1 gigabyte
 
         load_dotenv()
 
@@ -56,6 +56,7 @@ class ReadMeChat(Command):
         logging.info(f"OpenAI API call made. Tokens used: {tokens_used}")
         return response, tokens_used
     
+    # start terminal
     def execute(self, *args, **kwargs):
         character_name = kwargs.get("character_name", "Movie Expert")
         print(f"\nWelcome to the GitHub Readme Generator. Type 'help' for a list of commands.")
@@ -82,6 +83,11 @@ class ReadMeChat(Command):
                 print("\nHelp Commands:")
                 print("exit : exit the program")
                 print("url <repository_url> : search for a github repository")
+                print("structure : collect the repository file structure")
+                print("download : retrieve a github repository")
+                print("download <file_name> <file_name> ... : retrieve specific files from a github repository")
+                print("download <directory_location> : retrieve a folder from a  github repository")
+                print("delete : clear the current downloaded files")
                 print("\n")
                 continue
 
@@ -89,15 +95,59 @@ class ReadMeChat(Command):
             elif commands[0] == "url" and len(commands) == 2:
                 match = re.search(r"github\.com/([^/]+)/([^/]+)", commands[1])
                 if match:
+                    # request repo connection
                     print(f"Searching github for {match.group(2)} ...")
                     self.connect_to_repository(match.group(2), match.group(1))
+                    # print repo size    
+                    print(f"Repository size: {self.convert_from_bytes(self.repo.size)}")
                 else:
                     print("Invalid repository url.")
                 continue
 
-            # download : save repository
-            elif user_input == "download" :
-                self.download_repository()
+            # download : retrieve repo contents
+            elif commands[0] == "download":
+                if self.repo is None:
+                    print("ERROR: Not connected to a repository. Use 'url' to connect to one.")
+                    continue
+
+                if self.repo.size > self.max_repo_size :            
+                    print(f"ERROR: This repository exceeds the maximum download limit of {self.convert_from_bytes(self.max_repo_size)}.")
+                    print(f"This repository is {self.convert_from_bytes(self.repo.size)}")
+                    print(f"Use 'download <file_name> <file_name> ...' to select specific files.")
+                    print(f"Use 'download <directory_location>' to select a specific directory.")
+                    return False
+                
+                # download entire directory
+                if len(commands) == 1 :
+                    self.recursive_download(self.repo.get_contents(""), self.init_local_dir(True))
+
+                elif len(commands) > 1 :
+                        # download folder
+                        if len(commands) == 2 and os.path.isdir(commands[1]) :
+                            self.recursive_download(self.repo.get_contents(commands[1]), self.init_local_dir(False))
+
+                        # download specified files
+                        else :
+                            for cmd in commands[1:] :
+                                if not os.path.isfile(cmd) :
+                                    print(f"ERROR: Invalid path: {cmd}")
+                                    continue
+                                self.download_file(self.repo.get_contents(cmd), self.init_local_dir(False))
+
+                print("Download complete.")
+                continue
+
+            # delete : clear the current downloaded files
+            elif user_input == "delete" :
+                self.init_local_dir(True)
+                print("Local repository cleared.")
+                continue
+
+            # structure : collect the repository file structure
+            elif user_input == "structure" :
+                self.save_file_structure(self.repo, os.path.join(self.local_dir, "file_structure.json"))
+                continue
+
 
             # unknown command
             else :
@@ -115,96 +165,89 @@ class ReadMeChat(Command):
                 print("Sorry, there was an error processing your request. Please try again.")
                 logging.error(f"Error during interaction: {e}")
             '''
+    
+    # given a number of bytes, return a string given in the most reasonable unit 
+    def convert_from_bytes(self, size_in_bytes):
+        units = ['bytes', 'KB', 'MB', 'GB', 'TB']
+        unit_index = 0
+        size = size_in_bytes
 
+        while size >= 1024 and unit_index < len(units) - 1:
+            size /= 1024
+            unit_index += 1
+
+        return f"{size:.3f} {units[unit_index]}"
+
+    # connect to git repository
     def connect_to_repository(self, repo_name, user):
         if self.git == None :
             print("ERROR: Authentication required.")
             return
 
         try :
+            # request connection
             self.repo = self.git.get_user(user).get_repo(repo_name)
             print(f"Successfully connected to {repo_name}")
-            
-            size_in_bytes = self.repo.size
-            
-            # Determine the most reasonable unit
-            units = ['bytes', 'KB', 'MB', 'GB', 'TB']
-            unit_index = 0
-            while size_in_bytes >= 1024 and unit_index < len(units) - 1:
-                size_in_bytes /= 1024
-                unit_index += 1
-
-            print(f"repo size: {size_in_bytes:.3f} {units[unit_index]}")
 
         except Exception or GithubException as e:
             print(f"Error: Unable to access repository.")
 
-    # access files from github
-    def download_repository(self):
-        if self.repo == None :
-            print("ERROR: Not connected to a repository. Use 'url' to connect to one.")
-            return False
-        
-        if self.repo.size > self.max_repo_size :
-            print(f"ERROR: This repository exceeds the maximum download limit of 100 Megabytes ({self.repo.size}/{self.max_repo_size}).")
-            print(f"Use 'download <filename/directory> <filename/directory> ...' to select specific files.")
-            return False
-        
-        # Clear local directory or create one if it doesn't exist
-        local_dir = "./local_repo"
-        if os.path.exists(local_dir) :
+    # Clear local directory or create one if it doesn't exist
+    def init_local_dir(self, clear_dir):
+        local_dir = self.local_dir
+        if os.path.exists(local_dir) and clear_dir :
             shutil.rmtree(local_dir)
         os.makedirs(local_dir, exist_ok=True)
-
-        # Download files recursively
-        if not self.recursive_download(self.repo.get_contents(""), local_dir) :
-            return False # terminate recursion
-        return True
+        return local_dir
 
     # walk through directories
     def recursive_download(self, contents, local_dir) :
-        file_count = 0
-        total_files = len(contents)
         for file in contents:
             try:
-                # directory
-                if file.type == "dir" :
-                    self.recursive_download(self.repo.get_contents(file.path), local_dir)
-                else :
-                    # check if files exceed 100 Mbs
-                    file_size = int(file.size)
-                    if self.curr_repo_size + file_size > self.max_repo_size :
-                        print(f"ERROR: Download limit exceeded: {self.max_repo_size} bytes.")
-                        self.curr_repo_size += file_size
-                        return
+                # open directory and create one if it doesn't exist
+                if file.type == "dir":
+                    sub_dir = os.path.join(local_dir, file.name)
+                    os.makedirs(sub_dir, exist_ok=True)
+                    self.recursive_download(self.repo.get_contents(file.path), sub_dir)
+                
+                # download files
+                else:
+                    self.download_file(file, local_dir)
 
-                    # download file
-                    try :
-                        file_url = file.download_url
-                        response = requests.get(file_url)
-                        with open(os.path.join(local_dir, file.name), 'wb') as f :
-                            f.write(response.content)
-                            self.curr_repo_size += int(file.size)
-                    except Exception or GithubException as e :
-                        print(f"ERROR: Could not download content {os.path.relpath(__file__, './local_repo')}")
+            except Exception or GithubException as e:
+                print(f"ERROR: Could not download content {file.name}")
 
-            except Exception as e:
-                print(f"ERROR: Could not find repository directory {os.path.relpath(__file__, './local_repo')}")
+    # copy file from Guthub to local_repo
+    def download_file(self, file, local_dir) :
+        try:
+            file_url = file.download_url
+            response = requests.get(file_url)
+            with open(os.path.join(local_dir, file.name), 'wb') as f:
+                f.write(response.content)
+            print(f"Downloaded: {local_dir}/{file.name}")
+        except : 
+            print(f"ERROR: File not found: {local_dir}/{file.name}")
     
-            # increment file count
-            file_count += 1
-            print(f"Downloaded {file_count}/{total_files}")
+    # collect file structure and save in local_dir
+    def save_file_structure(self, repo, file_name):
+        print("Collecting the repository file structure... This may take a moment...")
+        try:
+            def traverse_directory(directory):
+                contents = repo.get_contents(directory)
+                directory_structure = {}
+                for content in contents:
+                    if content.type == "dir":
+                        directory_structure[content.name] = traverse_directory(content.path)
+                    elif content.type == "file":
+                        directory_structure[content.name] = "file"
+                return directory_structure
 
-    # send message to openai
-    def interact_with_ai(self, user_input, character_name):
-        prompt_text = "Your main goal is to help the client build a README.md file. They can either describe their code in English or paste their entire codebase. You will read this code, interpret its goal, and construct a satisfactory README.md file."
-        prompt = ChatPromptTemplate.from_messages(self.history + [("system", prompt_text)])
-        
-        output_parser = StrOutputParser()
-        chain = prompt | self.llm | output_parser
+            file_structure_json = traverse_directory("")
+            
+            # Save the file structure as JSON to a file
+            with open(file_name, "w") as file:
+                json.dump(file_structure_json, file, indent=4)
+            print("File structure saved successfully.")
 
-        response = chain.invoke({"input": user_input})
-
-        tokens_used = self.calculate_tokens(prompt_text + user_input + response)
-        logging.info(f"OpenAI API call made. Tokens used: {tokens_used}")
-        return response, tokens_used
+        except :
+            print(f"ERROR: Unable to collect file structure.")
