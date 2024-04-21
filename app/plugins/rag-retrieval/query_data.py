@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 import argparse
 from dataclasses import dataclass
 from langchain.vectorstores.chroma import Chroma
@@ -8,13 +8,11 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
 
-curr_file = os.path.dirname(os.path.abspath(__file__))
-dotenv_path = os.path.join(curr_file, "..", ".env")
-load_dotenv(dotenv_path)
+load_dotenv(find_dotenv())
 
-OPENAI_API_KEY = os.getenv('OPEN_AI_KEY')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 OPEN_AI_MODEL = os.getenv('OPEN_AI_MODEL')
-CHROMA_PATH = os.path.join(curr_file, "chroma")
+CHROMA_PATH = os.getenv("CHROMA_PATH")
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:

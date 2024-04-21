@@ -5,14 +5,13 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 import shutil
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
-curr_file = os.path.dirname(os.path.abspath(__file__))
-dotenv_path = os.path.join(curr_file, "..", ".env")
-load_dotenv(dotenv_path)
-OPENAI_API_KEY = os.getenv('OPEN_AI_KEY')
-DATA_PATH = os.getenv('LOCAL_REPO_DIRECTORY')
-CHROMA_PATH = curr_file + "/chroma"
+load_dotenv(find_dotenv())
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+LOCAL_REPO = os.getenv('LOCAL_REPO')
+CHROMA_PATH = os.getenv('CHROMA_PATH')
 
 def main():
     generate_data_store()
@@ -24,7 +23,7 @@ def generate_data_store():
 
 def load_documents():
     documents = []
-    for root, dirs, files in os.walk(DATA_PATH):
+    for root, dirs, files in os.walk(LOCAL_REPO):
         for file in files:
             file_path = os.path.join(root, file)
             # Process the file and create a Document object

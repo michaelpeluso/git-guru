@@ -1,14 +1,16 @@
 from github import Github
 from github import GithubException
 import os
+from dotenv import find_dotenv, load_dotenv
 import requests
 import shutil
 import json
 
+load_dotenv(find_dotenv())
 
 class RepoRetrieval :
     def __init__(self):
-        self.local_dir = os.getenv('LOCAL_REPO_DIRECTORY')
+        self.local_dir = os.getenv('LOCAL_REPO')
         self.git = None
         self.repo = None
         self.max_repo_size = 2 ** 30 # 1 gigabyte
