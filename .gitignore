@@ -1,0 +1,15 @@
+*.sw*
+.coverage
+.pytest_cache
+*__pycache__
+.env
+amsenv/
+venv
+.venv
+logs
+.vscode
+local_repo/
+
+chroma_*
+chroma
+.DS_Store
