@@ -5,7 +5,7 @@ import re
 from app.backend.utils.file_manager import Filer
 from app.backend.repo_retrieval.repo_retrieval import RepoRetrieval
 
-utl = Filer() # for utility functions
+filer = Filer() # for utility functions
 rr = RepoRetrieval() # for github retrieval
 
 class Backend():
@@ -52,7 +52,7 @@ class Backend():
 
             # send files to ai
             elif commands[0] == "ai" :
-                user_code_input = utl.build_text_file()
+                user_code_input = filer.build_text_file()
                 try:
                     response, tokens_used = Filer.interact_with_ai(user_code_input, character_name)
                     print(f"AI Agent: {response}")
