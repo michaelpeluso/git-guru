@@ -16,6 +16,17 @@ def command_prompt():
         else :
             return jsonify({'message': "cmd_output"})
     return render_template('index.html')
+
+@app.route('/file-selection', methods=['GET', 'POST'])
+def show_files():
+    if request.method == 'POST':
+        if request.form['form'] == "url" :
+            url_cmd = "url " + request.form['url_input']
+            cmd_output = backend.execute(user_input=url_cmd)
+            return jsonify({'message': cmd_output})
+        else :
+            return jsonify({'message': "cmd_output"})
+    return render_template('index.html')
         
 
 if __name__ == '__main__':

@@ -66,7 +66,7 @@ class Backend():
                 print(f"Searching github for {match.group(2)} ...")
                 rr.connect_to_repository(match.group(2), match.group(1))
                 # print repo size
-                return(f"Repository size: {rr.convert_from_bytes(rr.repo.size)}")
+                return(f"Repository size: {rr.convert_from_bytes(rr.repo.size * 1024)}")
             else:
                 return("Invalid repository url.")
 

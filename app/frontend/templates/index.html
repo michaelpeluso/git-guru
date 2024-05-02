@@ -13,19 +13,9 @@
                 <h1 class="text-body-emphasis">Basic jumbotron</h1>
                 <p class="lead">This is a simple Bootstrap jumbotron that sits within a <code>.container</code>, recreated with built-in utility classes.</p>
                 <div class="col-6 mb-3">
-                    <form id="url-form" method="POST" action="/">
+                    <form id="url_form" method="POST" action="/file-selection">
                         <div class="d-flex gap-3">
                             <input type="hidden" name="form" value="url" />
-                            <input type="text" class="form-control" id="url_input" name="url_input" />
-                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
-                        </div>
-                        <div class="form-text">Enter github url</div>
-                    </form>
-                </div>
-                <div class="col-6 mb-3">
-                    <form id="commandForm" method="POST" action="/">
-                        <div class="d-flex gap-3">
-                            <input type="hidden" name="form" value="other" />
                             <input type="text" class="form-control" id="url_input" name="url_input" />
                             <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
                         </div>
@@ -35,10 +25,27 @@
             </div>
         </div>
 
-        <div id="outputContainer"></div>
+        <div id="repo_container">
+            <p id="repo_spinner" style="display: none">Loading...</p>
+            <div id="repo_info" style="display: none">
+                <div>
+                    <p id="repo_owner"></p>
+                    <a id="user_url" href=""><img id="user_avatar" src="" /></a>
+                </div>
+                <div>
+                    <p id="repo_id"></p>
+                    <p id="repo_name"></p>
+                    <p id="repo_desc"></p>
+                    <p id="repo_lang"></p>
+                    <p id="repo_created"></p>
+                    <p id="repo_updated"></p>
+                    <p id="repo_size"></p>
+                </div>
+            </div>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Script to handle form submission asynchronously -->
-        <script src="{{ url_for('static', filename='index.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     </body>
 </html>
