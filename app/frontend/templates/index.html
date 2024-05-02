@@ -1,0 +1,44 @@
+<!-- app/frontend/templates/form.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Command Prompt</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    </head>
+    <body>
+        <div class="container my-5">
+            <div class="p-5 d-flex flex-column align-items-center text-center bg-body-tertiary rounded-3">
+                <h1 class="text-body-emphasis">Basic jumbotron</h1>
+                <p class="lead">This is a simple Bootstrap jumbotron that sits within a <code>.container</code>, recreated with built-in utility classes.</p>
+                <div class="col-6 mb-3">
+                    <form id="url-form" method="POST" action="/">
+                        <div class="d-flex gap-3">
+                            <input type="hidden" name="form" value="url" />
+                            <input type="text" class="form-control" id="url_input" name="url_input" />
+                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                        </div>
+                        <div class="form-text">Enter github url</div>
+                    </form>
+                </div>
+                <div class="col-6 mb-3">
+                    <form id="commandForm" method="POST" action="/">
+                        <div class="d-flex gap-3">
+                            <input type="hidden" name="form" value="other" />
+                            <input type="text" class="form-control" id="url_input" name="url_input" />
+                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                        </div>
+                        <div class="form-text">Enter github url</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="outputContainer"></div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Script to handle form submission asynchronously -->
+        <script src="{{ url_for('static', filename='index.js') }}"></script>
+    </body>
+</html>
