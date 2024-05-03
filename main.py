@@ -1,6 +1,13 @@
-# main.py
-from app.backend import Backend
+import sys
+from app.frontend import app as flask_app
+from app.backend.utils.command_line import Backend
 
-# You must put this in your main.py because this forces the program to start when you run it from the command line.
 if __name__ == "__main__":
-    app = Backend().execute()  # Instantiate an instance of App
+
+    # run an instance of the backend in terminal
+    if len(sys.argv) > 1 and sys.argv[1] == "backend" :
+        Backend().execute()
+        
+    # Run the frontend app
+    else:
+        flask_app.run(debug=True)

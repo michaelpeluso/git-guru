@@ -50,18 +50,6 @@ class Backend():
                 print("delete : clear the current downloaded files")
                 print("\n")
 
-            # send files to ai
-            elif commands[0] == "ai" :
-                user_code_input = filer.build_text_file()
-                try:
-                    response, tokens_used = Filer.interact_with_ai(user_code_input, character_name)
-                    print(f"AI Agent: {response}")
-                    print(f"(This interaction used {tokens_used} tokens.)")
-                    self.history.append(("system", response))
-                except Exception as e:
-                    print("Sorry, there was an error processing your request. Please try again.")
-                    logging.error(f"Error during interaction: {e}")
-
             # url : search for repository
             elif commands[0] == "url" and len(commands) == 2:
                 match = re.search(r"github\.com/([^/]+)/([^/]+)", commands[1])
@@ -70,7 +58,7 @@ class Backend():
                     print(f"Searching github for {match.group(2)} ...")
                     rr.connect_to_repository(match.group(2), match.group(1))
                     # print repo size    
-                    print(f"Repository size: {rr.convert_from_bytes(rr.repo.size)}")
+                    print(f"Repository size: {rr.convert_from_bytes(rr.repo.size * 1024)}")
                 else:
                     print("Invalid repository url.")
 
@@ -79,9 +67,9 @@ class Backend():
                 if rr.repo is None:
                     print("ERROR: Not connected to a repository. Use 'url' to connect to one.")
 
-                elif rr.repo.size > rr.max_repo_size :            
+                elif rr.repo.size * 1024 > rr.max_repo_size :            
                     print(f"ERROR: This repository exceeds the maximum download limit of {rr.convert_from_bytes(rr.max_repo_size)}.")
-                    print(f"This repository is {rr.convert_from_bytes(rr.repo.size)}")
+                    print(f"This repository is {rr.convert_from_bytes(rr.repo.size * 1024)}")
                     print(f"Use 'download <file_name> <file_name> ...' to select specific files.")
                     print(f"Use 'download <directory_location>' to select a specific directory.")
                     return False
@@ -118,17 +106,6 @@ class Backend():
             # unknown command
             else :
                 print("ERROR: Unknown command. Use 'help' for a list of commands.")
-
-            '''
-            try:
-                response, tokens_used = Filer.interact_with_ai(user_input, character_name)
-                print(f"AI Agent: {response}")
-                print(f"(This interaction used {tokens_used} tokens.)")
-                self.history.append(("system", response))
-            except Exception as e:
-                print("Sorry, there was an error processing your request. Please try again.")
-                logging.error(f"Error during interaction: {e}")
-                '''
             
 if __name__ == "__main__":
     app = Backend()

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Display Data</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <span id="json_data" hidden>{{ json_data }}</span>
+
+        <div class="container mt-5">
+            <h1>Data List</h1>
+            <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+                <div id="list_group" class="list-group"></div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
