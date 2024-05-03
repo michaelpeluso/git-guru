@@ -114,7 +114,7 @@ class RepoRetrieval :
                             "type": "file",
                             "path": content.path,
                             "size": content.size,
-                            "first_three_lines": decoded_content.splitlines()[:3]
+                            "top_content": decoded_content.splitlines()[:3]
                         }
                         directory_structure[content.name] = file_info
 
