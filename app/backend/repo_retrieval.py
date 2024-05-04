@@ -2,6 +2,7 @@ from github import Github
 from github import GithubException
 import os
 from dotenv import find_dotenv, load_dotenv
+from app.backend.utils.get_api_limit import print_rates, is_limit_hit
 import requests
 import shutil
 import json
@@ -13,6 +14,7 @@ class RepoRetrieval :
         self.local_dir = os.getenv('LOCAL_REPO')
         self.git = None
         self.repo = None
+        self.user = None
         self.max_repo_size = 2 ** 27 # 128 megabytes
 
         try :
@@ -34,13 +36,16 @@ class RepoRetrieval :
 
     # connect to git repository
     def connect_to_repository(self, repo_name, user):
+        self.gh_api_limit()
+
         if self.git == None :
             print("ERROR: Authentication required.")
             return
 
         try :
             # request connection
-            self.repo = self.git.get_user(user).get_repo(repo_name)
+            self.user = user
+            self.repo = self.git.get_user(self.user).get_repo(repo_name)
             print(f"Successfully connected to {repo_name}")
 
         except Exception or GithubException as e:
@@ -53,9 +58,18 @@ class RepoRetrieval :
             shutil.rmtree(local_dir)
         os.makedirs(local_dir, exist_ok=True)
         return local_dir
+    
+    # check if api rate limit is reached
+    def gh_api_limit(self) :
+        if (is_limit_hit()) :
+            print_rates()
+            return True
+        return False
 
     # download list of files
     def download_files_batch(self, files=None, preserve_structure=True):
+        self.gh_api_limit()
+
         if files is None:
             # If no specific list of files is provided, download all files
             files = self.repo.get_contents("")
@@ -88,6 +102,8 @@ class RepoRetrieval :
 
     # save file structure as a json to file_structure.json
     def save_file_structure(self, repo, file_name):
+        self.gh_api_limit()
+        
         print("Collecting the repository file structure... This may take a moment...")
         try:
             def traverse_directory(directory, directory_structure):

@@ -1,8 +1,38 @@
 .type_directory,
 .type_file,
 .type_link {
+    padding: 0.5em 0 !important;
+    margin: 0% !important;
 }
 
 .type_file,
 .type_link {
+}
+
+.collapse_button {
+    transition: 0s;
+}
+.collapse_button:active {
+    border: none;
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 1em !important;
+}
+
+.text-muted {
+    font-size: smaller;
+}
+
+code {
+    color: rgb(160, 193, 224);
+    font-size: smaller;
+}
+
+body,
+h6 {
+    align-items: center;
+    vertical-align: middle;
 }

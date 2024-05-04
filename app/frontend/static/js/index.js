@@ -1,6 +1,9 @@
 $(document).ready(function () {
     // url form
     $("#url_form").submit(function (event) {
+        // repo api data
+        apiData = {};
+
         // search for repo
         if ($(document.activeElement).attr("id") === "submitButton") {
             // Prevent page reload
@@ -34,6 +37,9 @@ $(document).ready(function () {
                 method: "GET",
                 dataType: "json",
                 success: function (data) {
+                    // publicize data
+                    console.log(data);
+
                     // show info
                     $("#repo_info").show();
 
@@ -71,9 +77,9 @@ $(document).ready(function () {
             $.ajax({
                 url: "/file-selection",
                 type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
+                success: function (response) {
+                    console.log("Response from server:", response);
+                },
                 error: function (error) {
                     console.error("Error:", error);
                 },

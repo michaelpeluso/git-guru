@@ -13,3 +13,6 @@ def print_rates() :
     print("Resets in: ", 300 - (int)((time.mktime(rate_limit.core.reset.timetuple()) - time.time()) // 60), "minutes")
     print("-------------------------------------------")  
     print()
+
+def is_limit_hit() :
+    return rate_limit.core.limit == 0
