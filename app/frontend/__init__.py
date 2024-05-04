@@ -33,11 +33,14 @@ def show_files():
     json_file_path = os.path.join(LOCAL_REPO, "file_structure.json")
 
     with open(json_file_path, 'r') as file:
-        json_data = json.load(file)
+        json_data = json.dumps(json.load(file))
+
+        if not json_data:
+            return render_template('select-files.html', json_data={"message": "No data available"})
 
     # return page and data
     return render_template('select-files.html', json_data=json_data)
-        
+
 # run
 if __name__ == '__main__':
     app.run(debug=True)

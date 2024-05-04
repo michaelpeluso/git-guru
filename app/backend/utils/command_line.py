@@ -3,7 +3,7 @@ import logging
 import re
 
 from app.backend.utils.file_manager import Filer
-from app.backend.repo_retrieval.repo_retrieval import RepoRetrieval
+from app.backend.repo_retrieval import RepoRetrieval
 
 filer = Filer() # for utility functions
 rr = RepoRetrieval() # for github retrieval
@@ -18,7 +18,8 @@ class Backend():
     # start terminal
     def execute(self, *args, **kwargs):
         character_name = kwargs.get("character_name", "Readme Builder")
-        print(f"\nWelcome to the GitHub Readme Generator. Type 'help' for a list of commands.")
+        if (len(self.history) == 0) :
+            self.print_to_user(f"\nWelcome to the GitHub Readme Generator. Type 'help' for a list of commands.")
 
         # Retrieve repository contents based on the provided URL
         # repository_contents = self.get_repository_contents(repository_url, github_token)
@@ -35,77 +36,84 @@ class Backend():
             # done command : exit the program
             elif user_input.lower() == "exit":
                 rr.git.close
-                print("Goodbye.\n\n")
+                self.print_to_user("Goodbye.\n\n")
                 break
             
             # help command : list commands
             elif user_input.lower() == "help":
-                print("\nHelp Commands:")
-                print("exit : exit the program")
-                print("url <repository_url> : search for a github repository")
-                print("structure : collect the repository file structure")
-                print("download : retrieve a github repository")
-                print("download <file_name> <file_name> ... : retrieve specific files from a github repository")
-                print("download <directory_location> : retrieve a folder from a  github repository")
-                print("delete : clear the current downloaded files")
-                print("\n")
+                self.print_to_user("\nHelp Commands:"
+                    "\nexit : exit the program"
+                    "\nurl <repository_url> : search for a github repository"
+                    "\nstructure : collect the repository file structure"
+                    "\nhistory : show terminal history"
+                    "\ndownload : retrieve a github repository"
+                    "\ndownload <file_name> <file_name> ... : retrieve specific files from a github repository"
+                    "\ndelete : clear the current downloaded files"
+                    "\n")
 
             # url : search for repository
             elif commands[0] == "url" and len(commands) == 2:
                 match = re.search(r"github\.com/([^/]+)/([^/]+)", commands[1])
                 if match:
                     # request repo connection
-                    print(f"Searching github for {match.group(2)} ...")
+                    self.print_to_user(f"Searching github for {match.group(2)} ...")
                     rr.connect_to_repository(match.group(2), match.group(1))
                     # print repo size    
-                    print(f"Repository size: {rr.convert_from_bytes(rr.repo.size * 1024)}")
+                    self.print_to_user(f"Repository size: {rr.convert_from_bytes(rr.repo.size * 1024)}")
                 else:
-                    print("Invalid repository url.")
+                    self.print_to_user("Invalid repository url.")
 
             # download : retrieve repo contents
             elif commands[0] == "download":
                 if rr.repo is None:
-                    print("ERROR: Not connected to a repository. Use 'url' to connect to one.")
+                    self.print_to_user("ERROR: Not connected to a repository. Use 'url' to connect to one.")
 
                 elif rr.repo.size * 1024 > rr.max_repo_size :            
-                    print(f"ERROR: This repository exceeds the maximum download limit of {rr.convert_from_bytes(rr.max_repo_size)}.")
-                    print(f"This repository is {rr.convert_from_bytes(rr.repo.size * 1024)}")
-                    print(f"Use 'download <file_name> <file_name> ...' to select specific files.")
-                    print(f"Use 'download <directory_location>' to select a specific directory.")
+                    self.print_to_user(f"ERROR: This repository exceeds the maximum download limit of {rr.convert_from_bytes(rr.max_repo_size)}."
+                        "\nThis repository is {rr.convert_from_bytes(rr.repo.size * 1024)}"
+                        "\nUse 'download <file_name> <file_name> ...' to select specific files.")
                     return False
                 
                 # download entire directory
                 elif len(commands) == 1 :
-                    rr.recursive_download(rr.repo.get_contents(""), rr.init_local_dir(True))
+                    try :
+                        rr.download_files_batch()
+                    except Exception as e :
+                        self.print_to_user(f"ERROR: Unable to download entire repository: {e}")
 
+                # download specified files
                 elif len(commands) > 1 :
-                        # download folder
-                        if len(commands) == 2 and os.path.isdir(commands[1]) :
-                            rr.recursive_download(rr.repo.get_contents(commands[1]), rr.init_local_dir(False))
-
-                        # download specified files
-                        else :
-                            for cmd in commands[1:] :
-                                try :
-                                    rr.download_file(rr.repo.get_contents(cmd), rr.init_local_dir(False))
-                                except :
-                                    print(f"ERROR: Invalid path: {cmd}")
-
-                print("Download complete.")
+                    try :
+                        specified_files = commands[1:]
+                        rr.download_files_batch(specified_files)
+                        self.print_to_user("Download complete.")
+                    except Exception as e:
+                        self.print_to_user(f"ERROR: Unable to download {specified_files}: {e}")
 
             # delete : clear the current downloaded files
             elif user_input == "delete" :
                 rr.init_local_dir(True)
-                print("Local repository cleared.")
+                self.print_to_user("Local repository cleared.")
 
             # structure : collect the repository file structure
             elif user_input == "structure" :
                 rr.save_file_structure(rr.repo, os.path.join(rr.local_dir, "file_structure.json"))
+                self.print_to_user("Saved file structure.")
 
+            # history : show history
+            elif user_input == "history" :
+                history = [str(item) if isinstance(item, tuple) else item for item in self.history]
+                history_str = '\n'.join(history)
+                self.print_to_user(history_str)
 
             # unknown command
             else :
-                print("ERROR: Unknown command. Use 'help' for a list of commands.")
+                self.print_to_user("ERROR: Unknown command. Use 'help' for a list of commands.")
+
+    # print and save to history
+    def print_to_user(self, input):
+        self.history.append(("system", input))
+        print(input)
             
 if __name__ == "__main__":
     app = Backend()
