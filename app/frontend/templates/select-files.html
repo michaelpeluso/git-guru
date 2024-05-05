@@ -12,10 +12,20 @@
     <body>
         <span id="json_data" hidden>{{ json_data }}</span>
 
-        <div class="container mt-5">
-            <h1>Data List</h1>
-            <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
-                <div id="json_items" class="json_items w-100"></div>
+        <div class="container my-5">
+            <div class="d-flex justify-content-between flex-wrap mb-4">
+                <div>
+                    <p class="display-3 mb-1">File Structure</p>
+                    <p class="lead body mb-0">Select the files you would like to use.</p>
+                </div>
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <div id="json_items" class="json_items w-100 mb-4"></div>
+            </div>
+            <div class="all-buttons mt-1 d-flex justify-content-center gap-2">
+                <button type="submit" class="btn btn-outline-light" id="confirmSelected">Confirm Selected Files</button>
+                <button type="submit" class="btn btn-outline-secondary" id="confirmAll">Confirm All Files</button>
+                <a href="/" type="button" class="btn btn-outline-secondary" id="searchAgain">Search Again</a>
             </div>
         </div>
 

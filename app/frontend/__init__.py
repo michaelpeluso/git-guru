@@ -58,6 +58,14 @@ def show_files():
     # Default GET method behavior (can be updated as needed)
     return render_template('select-files.html')
 
+# route to handle querying
+@app.route('/query', methods=['GET', 'POST'])
+def query_local_database():
+    # just return index page
+    print(request.json)
+    return render_template('query.html', files=request.json)
+ 
+
 # run
 if __name__ == '__main__':
     app.run(debug=True)

@@ -33,6 +33,30 @@ $(document).ready(function () {
             });
         });
     });
+
+    // confirm all files button
+    $("#confirmAll").click(function (event) {
+        // build array
+        let filePaths = [];
+        document.querySelectorAll('input[type="checkbox"].form-check-input').forEach(function (checkbox) {
+            filePaths.push(checkbox.getAttribute("data-path"));
+        });
+
+        // send an AJAX request to the backend
+        send_files(filePaths);
+    });
+
+    // confirm selected files button
+    $("#confirmSelected").click(function (event) {
+        // build array
+        let filePaths = [];
+        document.querySelectorAll('input[type="checkbox"].form-check-input:checked').forEach(function (checkbox) {
+            filePaths.push(checkbox.getAttribute("data-path"));
+        });
+
+        // send an AJAX request to the backend
+        send_files(filePaths);
+    });
 });
 
 // read json object and format it into html
@@ -40,6 +64,7 @@ function recursive_json_parse(structure) {
     let html = "";
     for (let x in structure) {
         // html element wrappers
+        structured_path = structure[x].path;
         structure[x].path = structure[x].path.replaceAll("/", "_").replace(".", "-");
 
         const open_wrapper = `<div class=" type_${structure[x].path}" id="${structure[x].path}">`;
@@ -56,14 +81,14 @@ function recursive_json_parse(structure) {
             html += `
                 <div class="type_${structure[x].type} border-top" id="container_${structure[x].path}">
                     <div class="d-flex">
-                        <input type="checkbox" class="form-check-input" id="checkbox_id_${structure[x].path}" name="name_${structure[x].name}" value="value_${structure[x].path}">
-                        <button type="button" class="w-100 btn collapse_button btn-sm p-0" data-bs-toggle="collapse" data-bs-target="#collapse_id_${structure[x].path}" aria-expanded="false" aria-controls="collapseExample" on>
+                        <input type="checkbox" class="form-check-input" id="checkbox_id_${structure[x].path}" name="name_${structure[x].name}" data-path="${structured_path}">
+                        <button type="button" class="w-100 btn collapse_button p-0" data-bs-toggle="collapse" data-bs-target="#collapse_id_${structure[x].path}" aria-expanded="false" aria-controls="collapseExample" on>
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex gap-2 align-items-center">
                                     <h6><i class="bi bi-caret-right-fill heading p-0 m-0"></i></h6>
                                     <h6 class="cursor-pointer">${structure[x].name}</h6>
                                 </div>
-                                <span class="d-flex text-end text-muted">${count_str}</span>
+                                <span class="text-muted">${count_str}</span>
                             </div>
                         </button>
                     </div>
@@ -83,7 +108,7 @@ function recursive_json_parse(structure) {
                 <div class="type_${structure[x].type} border-top" id="container_${structure[x].path}">
                     <div class="d-flex flex-wrap justify-content-between pb-2">
                         <div class="d-flex flex-wrap align-items-center">
-                            <input type="checkbox" class="form-check-input" id="checkbox_id_${structure[x].path}" name="name_${structure[x].name}" value="value_${structure[x].path}">
+                            <input type="checkbox" class="form-check-input" id="checkbox_id_${structure[x].path}" name="name_${structure[x].name}" data-path="${structured_path}">
                             <label for="${structure[x].path}" >
                                 <h6">${structure[x].name}</h6>
                             </label>
@@ -97,6 +122,21 @@ function recursive_json_parse(structure) {
     }
 
     return html;
+}
+// send an AJAX request to the backend
+function send_files(array) {
+    $.ajax({
+        url: "/query",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(array),
+        success: function (response) {
+            console.log("Response from server:", response);
+        },
+        error: function (error) {
+            console.error("Error:", error);
+        },
+    });
 }
 
 // add css to elements

@@ -16,12 +16,6 @@
     border: none;
 }
 
-.form-check-input {
-    width: 20px;
-    height: 20px;
-    margin-right: 1em !important;
-}
-
 .text-muted {
     font-size: smaller;
 }
@@ -35,4 +29,61 @@ body,
 h6 {
     align-items: center;
     vertical-align: middle;
+}
+
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 1em !important;
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: relative; /* Positioning for pseudo-element */
+}
+
+/* Base checkbox styles */
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 1em !important;
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: relative;
+    display: inline-block; /* Added display property */
+}
+
+/* Checked state */
+.form-check-input:checked {
+    background-color: transparent;
+    border-color: #ccc;
+}
+
+/* Custom checkmark styles */
+.form-check-input:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68%;
+    height: 68%;
+    background-color: #ccc;
+    border-radius: 20%;
+}
+
+.form-check-input:active,
+.form-check-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ccc;
+}
+
+/* small devices */
+@media (max-width: 600px) {
+    .all-buttons {
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+    }
 }
