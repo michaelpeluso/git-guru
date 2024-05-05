@@ -29,17 +29,17 @@ def show_files():
         # if local_repo is empty
         cmd_output = ""
         
-        '''
-        # get repo link
+        
+        # get repo link (1 request)
         url_cmd = "url " + request.form['repo_url']
         cmd_output += backend.execute(user_input=url_cmd)
         
-        # delete local_repo contents
+        # delete local_repo contents (1 request)
         cmd_output += backend.execute(user_input="delete")
         
-        # get structure
+        # get structure (3 request)
         cmd_output += backend.execute(user_input="structure")
-        '''
+        
 
         print(cmd_output)
 

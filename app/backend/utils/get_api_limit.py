@@ -1,7 +1,12 @@
-import time
+import os
+from datetime import datetime, timezone
 from github import Github
+from dotenv import find_dotenv, load_dotenv
 
-g = Github()
+load_dotenv(find_dotenv())
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+
+g = Github(GITHUB_TOKEN)
 rate_limit = g.get_rate_limit()
 
 def print_rates() :
@@ -10,7 +15,7 @@ def print_rates() :
     print("GITHUB REQUEST STATUS")
     print("Total requests: ", rate_limit.core.limit)
     print("Remaining requests: ", rate_limit.core.remaining)
-    print("Resets in: ", 300 - (int)((time.mktime(rate_limit.core.reset.timetuple()) - time.time()) // 60), "minutes")
+    print("Resets in: ", round(((rate_limit.core.reset - datetime.now(timezone.utc)).total_seconds() / 60), 1), "minutes")
     print("-------------------------------------------")  
     print()
 

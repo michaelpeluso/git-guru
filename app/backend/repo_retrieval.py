@@ -18,7 +18,12 @@ class RepoRetrieval :
         self.max_repo_size = 2 ** 27 # 128 megabytes
 
         try :
-            self.git = Github(os.getenv('GITHUB_ACCESS_TOKEN'))
+            self.git = Github(os.getenv('GITHUB_TOKEN'))
+
+            # check if access token is valid
+            if (self.git.get_rate_limit().core.limit == 60) :
+                print("ERROR: GitHub personal access token is invalid")
+                    
         except Exception or GithubException as e :
             print(f"ERROR: Unable to connect to GitHub: {e}")
 
@@ -45,7 +50,7 @@ class RepoRetrieval :
         try :
             # request connection
             self.user = user
-            self.repo = self.git.get_user(self.user).get_repo(repo_name)
+            self.repo = self.git.get_repo(f"{user}/{repo_name}")
             print(f"Successfully connected to {repo_name}")
 
         except Exception or GithubException as e:
@@ -100,68 +105,61 @@ class RepoRetrieval :
         except Exception as e:
             print(f"ERROR: Could not download files: {e}")
 
+
+
     # save file structure as a json to file_structure.json
-    def save_file_structure(self, repo, file_name):
-        self.gh_api_limit()
-        
-        print("Collecting the repository file structure... This may take a moment...")
+    def retrieve_file_structure(self, file_name="file_structure.json"):
         try:
-            def traverse_directory(directory, directory_structure):
-                # Batch fetch directory contents
-                contents = repo.get_contents(directory)
-                contents_dict = {content.name: content for content in contents}
+            # get default branch github api sha
+            branch = self.repo.get_branch(self.repo.default_branch)
 
-                for content in contents:
-
-                    # directory
-                    if content.type == "dir":
-                        # Check if the directory contents are already cached
-                        if content.name in directory_structure:
-                            sub_directory_structure = directory_structure[content.name]["contents"]
-                        else:
-                            sub_directory_structure = {}
-                            directory_structure[content.name] = {
-                                "name": content.name,
-                                "path": content.path,
-                                "type": "directory",
-                                "contents": sub_directory_structure
-                            }
-                            # Cache the directory contents
-                            directory_structure[content.name]["contents"] = traverse_directory(content.path, sub_directory_structure)
-
-                    # file
-                    elif content.type == "file":
-                        # Add file information directly to directory_structure
-                        try:
-                            decoded_content = content.decoded_content.decode('utf-8')
-                        except UnicodeDecodeError:
-                            decoded_content = "Unable to decode content (non-UTF-8 encoding)"
-                        file_info = {
-                            "name": content.name,
-                            "type": "file",
-                            "path": content.path,
-                            "size": content.size,
-                            "top_content": decoded_content.splitlines()[:3]
-                        }
-                        directory_structure[content.name] = file_info
-
-                    # symbolic link
-                    elif content.type == "symlink":
-                        file_info = {
-                            "name": content.name,
-                            "type": "link",
-                            "path": content.path,
-                            "target": content.target
-                        }
-                        directory_structure[content.name] = file_info
-
-                return directory_structure
-
-            file_structure_json = traverse_directory("", {})
+            # get File Structure
+            file_structure = self.repo.get_git_tree(branch.commit.sha, recursive=True)
+        
+            # Format file structure as desired
+            formatted_structure = {}
             
-            # Save the file structure as JSON to a file
-            with open(file_name, "w") as file:
-                json.dump(file_structure_json, file, indent=4)
+        except Exception as e:
+            print(f"ERROR: There was an accessing repository: {e}")
+        
+        try:
+
+            # iterate through all contents
+            for item in file_structure.tree:
+                path_components = item.path.split('/')
+                current_level = formatted_structure
+
+                # iterate through each directories
+                for component in path_components[:-1]:
+                    if component not in current_level:
+                        current_level[component] = {
+                            "name": component,
+                            "path": '/'.join(path_components[:path_components.index(component) + 1]),
+                            "type": "directory",
+                            "contents": {}
+                        }
+                    current_level = current_level[component]["contents"]
+                # create file entry
+                if item.type == "blob":
+                    current_level[path_components[-1]] = {
+                        "name": path_components[-1],
+                        "type": "file",
+                        "path": item.path,
+                        "size": item.size
+                    }
+            
+        except Exception as e:
+            print(f"ERROR: There was an issue iterating through the file structure: {e}")
+        
+        try: 
+
+            # save structure as json
+            full_name = os.path.join(self.local_dir, "file_structure.json")
+            
+            with open(full_name, "w") as file :
+                json.dump(formatted_structure, file, indent=4)
+
             print("File structure saved successfully.")
+
         except Exception as e:
             print(f"ERROR: There was an issue saving the file structure: {e}")

@@ -77,6 +77,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "/file-selection",
                 type: "POST",
+                data: $("#url_form").serialize(),
                 success: function (response) {
                     console.log("Response from server:", response);
                 },
