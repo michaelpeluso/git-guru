@@ -17,7 +17,7 @@ class AI_Interactions :
     def interact_with_ai(self, user_input, character_name):
 
         # Generate a more conversational and focused prompt
-        prompt_text = "Your main goal is to help the client build a README.md file. This readme file will describe a users github repository. For you first message, the user will send a long string of files that he or she has chosen from their codebase that they believe is most relevant code regarding their project. You will read this code, interpret its goal, and construct a satisfactory README.md file immediately following the users initial message. The users will paste their code below. \n\n"
+        prompt_text = "Your main goal is to help the client build a README.md file. This readme file will describe a users github repository. The user will send a long string of files that he or she has chosen from their codebase that they believe is most relevant code regarding their project. You will read this code, interpret its goal, and construct a satisfactory README.md file. \n\n"
         prompt = ChatPromptTemplate.from_messages(self.history + [("system", prompt_text)])
         
         output_parser = StrOutputParser()

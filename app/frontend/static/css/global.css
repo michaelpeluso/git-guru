@@ -33,7 +33,7 @@
 .expand input:hover {
     border-bottom: solid #343a40;
 }
-.border {
+.search_bar_border {
     display: block;
     position: absolute;
     height: 3px;
