@@ -71,41 +71,38 @@ class RepoRetrieval :
             return True
         return False
 
-    # download list of files
-    def download_files_batch(self, files=None, preserve_structure=True):
-        self.gh_api_limit()
-
+    def download_files_batch(self, files=None):
         if files is None:
-            # If no specific list of files is provided, download all files
-            files = self.repo.get_contents("")
+            files = []
+
+        # Ensure self.repo is initialized
+        if self.repo is None:
+            print("ERROR: Repository not initialized.")
+            return
 
         try:
-            # Batch download files recursively
-            for file in files:
+            # download entire repository if files provided
+            if not files:
+                files = self.repo.get_contents("")
+
+            for file_path in files:
+                file = self.repo.get_contents(file_path)
                 if file.type == "dir":
-                    if preserve_structure:
-                        # Recursively download files in subdirectories
-                        subdirectory_files = self.repo.get_contents(file.path)
-                        self.download_files_batch(subdirectory_files, preserve_structure)
-                        # Create directories if preserve_structure is True
-                        os.makedirs(os.path.join(self.local_dir, file.path), exist_ok=True)
+                    subdirectory_files = self.repo.get_contents(file_path)
+                    self.download_files_batch(subdirectory_files, preserve_structure=True)
                 else:
                     file_url = file.download_url
                     response = requests.get(file_url)
-                    if preserve_structure:
-                        # Create directories based on file path
-                        file_path = os.path.join(self.local_dir, file.path)
-                        os.makedirs(os.path.dirname(file_path), exist_ok=True)
-                        with open(file_path, 'wb') as f:
-                            f.write(response.content)
-                    else:
-                        with open(os.path.join(self.local_dir, file.name), 'wb') as f:
-                            f.write(response.content)
+                    print(file_url)
+                    print(response)
+                    file_path = os.path.join(self.local_dir, file.path)
+                    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                    with open(file_path, 'wb') as f:
+                        f.write(response.content)
                     print(f"Downloaded: {self.local_dir}/{file.name}")
+
         except Exception as e:
             print(f"ERROR: Could not download files: {e}")
-
-
 
     # save file structure as a json to file_structure.json
     def retrieve_file_structure(self, file_name="file_structure.json"):

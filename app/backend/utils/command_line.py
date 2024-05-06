@@ -97,7 +97,7 @@ class Backend():
 
             # structure : collect the repository file structure
             elif user_input == "structure" :
-                rr.save_file_structure(rr.repo, os.path.join(rr.local_dir, "file_structure.json"))
+                rr.retrieve_file_structure()
                 self.print_to_user("Saved file structure.")
 
             # history : show history

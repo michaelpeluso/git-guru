@@ -76,7 +76,7 @@ $(document).ready(function () {
             // Send an AJAX request to the backend
             $.ajax({
                 url: "/file-selection",
-                type: "POST",
+                type: "GET",
                 data: $("#url_form").serialize(),
                 success: function (response) {
                     console.log("Response from server:", response);

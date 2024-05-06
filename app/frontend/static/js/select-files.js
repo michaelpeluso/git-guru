@@ -128,8 +128,7 @@ function send_files(array) {
     $.ajax({
         url: "/query",
         type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(array),
+        data: { files: array },
         success: function (response) {
             console.log("Response from server:", response);
         },

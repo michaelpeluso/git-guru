@@ -22,11 +22,13 @@
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <div id="json_items" class="json_items w-100 mb-4"></div>
             </div>
-            <div class="all-buttons mt-1 d-flex justify-content-center gap-2">
-                <button type="submit" class="btn btn-outline-light" id="confirmSelected">Confirm Selected Files</button>
-                <button type="submit" class="btn btn-outline-secondary" id="confirmAll">Confirm All Files</button>
-                <a href="/" type="button" class="btn btn-outline-secondary" id="searchAgain">Search Again</a>
-            </div>
+            <form action="/query">
+                <div class="all-buttons mt-1 d-flex justify-content-center gap-2">
+                    <button type="button w-100" class="btn btn-outline-light" id="confirmSelected" data-files="[]">Confirm Selected Files</button>
+                    <button type="button w-100" class="btn btn-outline-secondary" id="confirmAll" data-files="[]">Confirm All Files</button>
+                    <button type="button" class="btn btn-outline-secondary" id="searchAgain" onclick="window.location.href = '/';">Search Again</button>
+                </div>
+            </form>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
