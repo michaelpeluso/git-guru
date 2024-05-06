@@ -9,7 +9,7 @@ load_dotenv(find_dotenv())
 LOCAL_REPO = os.getenv('LOCAL_REPO')
 
 # create Flask app
-app = Flask(__name__)
+app = Flask(__name__, template_folder='html')
 
 # initialize the backend
 backend = Backend()
@@ -29,7 +29,6 @@ def show_files():
         # if local_repo is empty
         cmd_output = ""
         
-        
         # get repo link (1 request)
         url_cmd = "url " + request.form['repo_url']
         cmd_output += backend.execute(user_input=url_cmd)
@@ -39,7 +38,6 @@ def show_files():
         
         # get structure (3 request)
         cmd_output += backend.execute(user_input="structure")
-        
 
         print(cmd_output)
 
@@ -61,10 +59,32 @@ def show_files():
 # route to handle querying
 @app.route('/query', methods=['GET', 'POST'])
 def query_local_database():
-    # just return index page
-    print(request.json)
-    return render_template('query.html', files=request.json)
- 
+
+    if request.method == 'POST':
+        # get file array
+        files = request.form.getlist('files[]')
+        file_cmd = 'download'
+
+        # create string of files
+        if (len(files) > 0) : 
+            file_string = ' '.join(files)
+            file_cmd += ' ' + file_string
+
+            print("Downloading " + str(len(files)) + " files/directories...")
+            print(file_string)
+            print("This may take a while...")
+
+        else :
+            print("Downloading all files...")
+
+        # download content
+        #cmd_output = backend.execute(user_input=file_cmd)
+        #print (cmd_output)
+
+        return render_template('query.html')
+    
+    return render_template('query.html')
+
 
 # run
 if __name__ == '__main__':
