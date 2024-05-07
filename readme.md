@@ -87,16 +87,25 @@ The configuration file is `package-lock.json` which contains information about t
 │ │ │ ├── ai_interactions.py
 │ │ │ └── file_manager.py
 │ └── frontend
-│ └── static
-│ └── js
-│ ├── index.js
-│ ├── query.js
-│ └── select-files.js
+│ │ └── static
+│ │ │ │ ├── css
+│ │ │ │ ├── global.css
+│ │ │ │ ├── index.css
+│ │ │ │ ├── query.css
+│ │ │ │ └── select-files.css
+│ │ │ └── js
+│ │ │ │ ├── index.js
+│ │ │ │ ├── query.js
+│ │ │ │ └── select-files.js
+│ │ ├── templates
+│ │ │ ├── index.html
+│ │ │ ├── query.html
+│ │ │ ├── select-files.html
+├── __init__.py
 ├── main.py
 ├── package-lock.json
 ├── readme.md
-├── requirements.txt
-└── __init__.py
+└── requirements.txt
 ```
 
 ## Troubleshooting and FAQ
