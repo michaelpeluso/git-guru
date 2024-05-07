@@ -68,17 +68,20 @@ function recursive_json_parse(structure) {
     for (let x in structure) {
         // html element wrappers
         structured_path = structure[x].path;
-        structure[x].path = structure[x].path.replaceAll("/", "_").replace(".", "-");
+        if (structured_path) {
+            structure[x].path = structure[x].path.replaceAll("/", "_").replace(".", "-");
+        }
 
         const open_wrapper = `<div class=" type_${structure[x].path}" id="${structure[x].path}">`;
         const close_wrapper = `</div>`;
 
         html += open_wrapper;
 
-        // account for meta information
+        // account for meta
         if (structure[x].name == "meta") {
             continue;
         }
+
         // directory
         else if (structure[x].type == "directory") {
             count = Object.keys(structure[x].contents).length;
