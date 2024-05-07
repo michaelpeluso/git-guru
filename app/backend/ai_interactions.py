@@ -7,6 +7,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 import tiktoken
+from app.backend.utils.log_manager import log_api_usage
 
 
 load_dotenv(find_dotenv())
@@ -29,7 +30,7 @@ Answer the question based on the above context: {question}
 
 # prompt_text = "Your main goal is to help the client build a README.md file. This readme file will describe a users github repository. The user will send a long string of files that he or she has chosen from their codebase that they believe is most relevant code regarding their project. You will read this code, interpret its goal, and construct a satisfactory README.md file. \n\n"
 
-def query_ai(prompt="", total_snippets=15, relevance=0.25):
+def query_ai(prompt="", total_snippets=10, relevance=0.5):
     query_text = prompt
 
     # Check if the API key is loaded correctly
@@ -70,6 +71,9 @@ def query_ai(prompt="", total_snippets=15, relevance=0.25):
 
     # calculate price
     price = calculate_price(tokens_in, tokens_out)
+
+    # log
+    log_api_usage("Querying", tokens_in, tokens_out, price)
 
     # return collected data
     data = { 

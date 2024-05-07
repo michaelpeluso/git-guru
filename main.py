@@ -14,4 +14,8 @@ if __name__ == "__main__":
         
     # Run the frontend app
     else:
-        flask_app.run(debug=True)
+        if len(sys.argv) > 1 and sys.argv[1] == "debug" :
+            print("Running in debug mode...") 
+            flask_app.run(debug=True)
+        else:
+            flask_app.run(debug=False, use_reloader=False)

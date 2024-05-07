@@ -105,14 +105,13 @@ class Backend():
         # database : cluster and store data in a data structure
         elif commands[0] == "database":
             print("Generating database...")
-            generate_database()
+            generate_database(750, 75)
             return self.print_to_user("Generated database.")
     
         # query : query open ai about the data
         elif commands[0] == "query":
             # stitch together command
             joined_commands = " ".join(commands)
-            print(joined_commands)
             commands = joined_commands.split(maxsplit=1)
 
             # check for valid query
@@ -122,15 +121,15 @@ class Backend():
             
             self.print_to_user("Querying ai with prompt...")
             prompt = commands[1]
-            response = query_ai(prompt)
+            response = query_ai(prompt, 15, 0.5)
             response = jsonDumps(response)
-            print("++++++++++ ", response)
             
             if (response == {}) :
-                self.print_to_user("No data returned.")
+                return self.print_to_user("No data returned.")
             
+
             #return self.print_to_user(response)
-            return response
+            return self.print_to_user(response)
 
         # unknown command
         else :
