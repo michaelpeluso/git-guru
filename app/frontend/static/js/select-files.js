@@ -77,7 +77,6 @@ function recursive_json_parse(structure) {
 
         // account for meta information
         if (structure[x].name == "meta") {
-            continue;
         }
         // directory
         else if (structure[x].type == "directory") {
