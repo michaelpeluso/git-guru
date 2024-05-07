@@ -34,17 +34,16 @@ $(document).ready(function () {
         });
     });
 
-    // confirm all files button
-    $("#confirmAll").click(function (event) {
+    // check all files button
+    $("#selectAll").click(function (event) {
         event.preventDefault();
-        // build array
-        let filePaths = [];
-        document.querySelectorAll('input[type="checkbox"].form-check-input').forEach(function (checkbox) {
-            filePaths.push(checkbox.getAttribute("data-path"));
-        });
+        $(".form-check-input").prop("checked", true);
+    });
 
-        // send an AJAX request to the backend
-        send_files(filePaths);
+    // uncheck all files button
+    $("#deselectAll").click(function (event) {
+        event.preventDefault();
+        $(".form-check-input").prop("checked", false);
     });
 
     // confirm selected files button

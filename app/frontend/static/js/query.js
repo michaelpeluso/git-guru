@@ -27,26 +27,34 @@ $(document).ready(function () {
         else if (event.originalEvent.submitter.id == "findErrorsButton") {
             $("#response").html("Searching for errors...");
             query = `
-            Generate a comprehensive README.md file that effectively describes a GitHub repository based on provided code snippets. Ensure the README.md includes:
-
-            - Suitable title and short description
-            - Table of contents
-            - Project overview
-            - Features
-            - Requirements and dependencies
-            - Installation and execution instructions
-            - Configuration file
-            - Visual file structure tree using 'file_structure.json' (use characters like '├', '─', and '└')
-            - Troubleshooting and FAQ
-            - Any other relevant information for users or contributors
-
-            The README.md should be long and comprehensive, filling more than a page. Display the contents as markdown text, without describing how to build one.
-            `;
+            Determine the syntax errors in the provided code. Provide the following information for each error:
+            - File location
+            - Line number
+            - Assumed programming language of the file (i.e. "Python", "Java", etc.)
+            - Relevant code lines where the error is apparent
+            - A clear and concise description of the fix required to resolve the error
+            
+            If no errors are found, respond with a confirmation statement (e.g., 'No errors detected.') rather than providing any additional details`;
         }
         // readme prompt
         else if (event.originalEvent.submitter.id == "buildReadmeButton") {
             $("#response").html("Generating a README.md file...");
-            query = `Generate a comprehensive README.md file that effectively describes a GitHub repository based on a set of provided code snippets. The code snippets are the most relevant to the project. Please create a detailed README.md file that includes the following sections: * A suitable title and short description * Table of contents * Project overview * Features * Requirements and dependencies * Installation and execution instructions * Configuration file * A visual file structure tree using 'file_structure.json' (use characters like '├', '─', and '└') * Troubleshooting and FAQ * Any other relevant information for potential users or contributors The generated README.md file should be long and comprehensive, filling more than a page. Please display the contents of the file as markdown text, without simply describing how to build one.`;
+            query = `
+            Generate a comprehensive README.md file for a GitHub repository based on a set of provided code snippets with slight overlaps. The README.md may include the following relevant sections:
+
+            1. A suitable title and short description
+            2. Table of contents
+            3. Project overview
+            4. Features
+            5. Requirements and dependencies
+            6. Installation and execution instructions
+            7. Configuration file
+            8. Full file structure tree using 'file_structure.json' (use characters like '├', '─', and '└')
+            9. Troubleshooting and FAQ
+            10. Any other relevant information for potential users or contributors
+
+            Please ensure that the README.md file is long and comprehensive, filling several pages. Display the contents as markdown test.
+            Please write the content, DO NOT DESCRIBE HOW TO BUILD ONE.`;
         } else {
             $("#response").html("Generating a response...");
         }
