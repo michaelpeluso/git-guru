@@ -121,6 +121,12 @@ class RepoRetrieval :
         
         try:
 
+            # add meta information
+            formatted_structure["meta"] = {
+                "name" : "meta",
+                "description" : "This JSON object represents a complete file structure of the codebase. (├─│└)"
+            }
+
             # iterate through all contents
             for item in file_structure.tree:
                 path_components = item.path.split('/')

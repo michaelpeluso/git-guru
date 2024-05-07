@@ -105,7 +105,7 @@ class Backend():
         # database : cluster and store data in a data structure
         elif commands[0] == "database":
             print("Generating database...")
-            generate_database(750, 75)
+            generate_database(1000, 100)
             return self.print_to_user("Generated database.")
     
         # query : query open ai about the data
@@ -121,7 +121,7 @@ class Backend():
             
             self.print_to_user("Querying ai with prompt...")
             prompt = commands[1]
-            response = query_ai(prompt, 15, 0.5)
+            response = query_ai(prompt, 20, 0.0)
             response = jsonDumps(response)
             
             if (response == {}) :

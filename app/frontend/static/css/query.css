@@ -54,4 +54,7 @@ textarea:focus + .border,
         width: 75%;
         margin: auto;
     }
+    .lead {
+        width: 100% !important;
+    }
 }
