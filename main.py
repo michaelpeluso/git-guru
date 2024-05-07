@@ -1,6 +1,6 @@
 import sys
 from app.frontend import app as flask_app
-from app.backend.utils.command_line import Backend
+from app.backend.command_line import Backend
 from app.backend.utils.get_api_limit import print_rates
 
 if __name__ == "__main__":
