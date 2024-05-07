@@ -120,7 +120,7 @@ class RepoRetrieval :
             print(f"ERROR: There was an accessing repository: {e}")
         
         try:
-
+                
             # add meta information
             formatted_structure["meta"] = {
                 "name" : "meta",
