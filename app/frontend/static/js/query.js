@@ -21,7 +21,7 @@ $(document).ready(function () {
         // user prompt
         if (event.originalEvent.submitter.id == "submitButton") {
             $("#response").html("Generating a response...");
-            query = $("#query_input").val() + "\n\nSimply say 'Unable to answer your request. Please reword your request and try again.' if you cannot provide adequate information.";
+            query = $("#query_input").val() + "\n\nIf you can not answer, simply say 'Unable to answer your request. Please reword your request and try again.' if you cannot provide adequate information.";
         }
         // syntax prompt
         else if (event.originalEvent.submitter.id == "findErrorsButton") {
@@ -56,6 +56,8 @@ $(document).ready(function () {
             8. Full file structure tree using 'file_structure.json' (use characters like '├', '│', '─', and '└')
             9. Troubleshooting
             10. Any other relevant information for potential users or contributors
+
+            Don't include the section if there is no information on it.
 
             Please ensure that the README.md file is long and comprehensive, filling several pages. Display the contents as markdown test.
             Please write the content, DO NOT DESCRIBE HOW TO BUILD ONE.
