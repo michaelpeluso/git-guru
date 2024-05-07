@@ -21,6 +21,43 @@ This project is a GitHub README.md generator. It generates a comprehensive READM
 - Extracts relevant information from your code snippets
 - Provides a visual file structure tree using `file_structure.json`
 
+## Setup and Execution Instructions
+
+1. **Start Python Virtual Environment:**
+Open a terminal window. Navigate to the project directory. Create a new Python virtual environment by running the command:
+```
+python -m venv venv
+```
+Activate the virtual environment:
+- On Windows:
+```
+venv\Scripts\activate
+```
+- On macOS and Linux:
+```
+source venv/bin/activate
+```
+
+2. **Install Requirements:**
+3. Make sure you are in the virtual environment. Install the required dependencies from the `requirements.txt` file by running the command:
+```
+pip install -r requirements.txt
+```
+
+3. **Execute Commands:**
+To run the application in on your browser, use the following command:
+```
+python main.py
+```
+To run the application in debug mode, use the following command:
+```
+python main.py debug
+```
+To run the backend functionality in the terminal, use:
+```
+python main.py backend
+```
+
 ## Requirements and Dependencies
 - Python 3.8
 - `app` module dependencies
