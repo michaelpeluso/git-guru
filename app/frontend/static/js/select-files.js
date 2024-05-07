@@ -75,8 +75,12 @@ function recursive_json_parse(structure) {
 
         html += open_wrapper;
 
+        // account for meta information
+        if (structure[x].name == "meta") {
+            continue;
+        }
         // directory
-        if (structure[x].type == "directory") {
+        else if (structure[x].type == "directory") {
             count = Object.keys(structure[x].contents).length;
             count_str = count == 1 ? count + " item" : count + " items";
             dir_content = recursive_json_parse(structure[x].contents);

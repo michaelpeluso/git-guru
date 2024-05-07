@@ -12,20 +12,20 @@
         <div class="container my-5">
             <div class="p-5 d-flex flex-column align-items-center text-center bg-body-tertiary rounded-3">
                 <h1 class="text-body-emphasis display-3">Ask AI</h1>
-                <p class="lead body">Ask anything about your code using <code>artificial intelligence</code>.</p>
+                <p class="lead body w-75">Request anything about your code using <code class="lead">artificial intelligence</code>. You make make suggestions if you decide to find syntax errors or generate a Readme.md file.</p>
                 <br />
                 <div class="col-11 mb-3">
                     <form id="query_form" class="d-flex flex-column" method="POST" action="/ai">
                         <input type="hidden" name="form" value="url" />
                         <div class="expand" tabindex="0">
-                            <textarea type="text" id="query_input" name="query_input" rows="1" placeholder="Enter your question here"></textarea>
+                            <textarea type="text" id="query_input" name="query_input" rows="1" placeholder="Enter your request here"></textarea>
                             <div class="search_bar_border border"></div>
                         </div>
                         <div class="all-buttons d-flex justify-content-center gap-3 pt-4">
-                            <button type="submit" class="btn btn-outline-light" id="submitButton">Submit Question</button>
+                            <button type="submit" class="btn btn-outline-light" id="submitButton">Submit Request</button>
                             <button type="submit" class="btn btn-outline-light" id="findErrorsButton">Find Syntax Errors</button>
                             <button type="submit" class="btn btn-outline-light" id="buildReadmeButton">Build A Readme.md</button>
-                            <button type="button" class="btn btn-outline-secondary" id="searchAgain" onclick="window.location.href = '/';">Search Again</button>
+                            <button type="button" class="btn btn-outline-secondary" id="searchAgain" onclick="window.location.href = '/';">Search GitHub Again</button>
                         </div>
                     </form>
                 </div>
