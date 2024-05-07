@@ -8,16 +8,16 @@
 3. [Requirements and Dependencies](#requirements-and-dependencies)
 4. [Installation and Execution](#installation-and-execution-instructions)
 5. [File Structure](#file-structure)
-6. [Troubleshooting and FAQ](#troubleshooting-and-faq)
+6. [Logging System](#logging-system)
+7. [Troubleshooting and FAQ](#troubleshooting-and-faq)
 
 ## Project Overview
-This project is a GitHub README.md generator. It generates a comprehensive README.md file for your Github repository based on a set of provided code snippets. The generated README.md is designed to be comprehensive and long, filling more than a page.
+The GitGuru project is designed to streamline the process of generating a custom README.md file for GitHub repositories. It leverages artificial intelligence to analyze code snippets and create a comprehensive README.md document.
 
 ## Features
-- Automatic generation of README.md files based on provided code snippets
-- Detection of syntax errors in the code snippets for improved clarity
-- Querying functionality to extract relevant information from the codebase
-- Provides a visual file structure tree using `file_structure.json`
+- AI-Powered README Generation
+- Error Detection
+- Inquiry-Based Assistance
 
 ### Requirements and Dependencies:
 - Python 3.8
@@ -70,8 +70,9 @@ To run the backend functionality in the terminal, use:
 python main.py backend
 ```
 
-## Installation and Execution
+### Logging System
 
+The logging system in this project is designed to track API usage and store relevant information in log files. The system initializes the logs directory and log file if they do not already exist. Each log entry includes a timestamp, action performed, tokens input, tokens output, and cost associated with the action. The log file is appended with each new log entry to maintain a history of API usage.
 
 ## File Structure
 ```
