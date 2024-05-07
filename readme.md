@@ -28,11 +28,13 @@ This project is a GitHub README.md generator. It generates a comprehensive READM
 - Your Github repository URL
 
 ## Installation and Execution
-0.**Quickstart**
-- 1. Clone this repository to your local machine.
-- 2. Navigate to the repository directory.
-- 3. Install the required dependencies using `pip install -r requirements.txt`.
-- 4. Run `python main.py` in your terminal.
+
+0. **Quickstart**
+- Clone this repository to your local machine.
+-  Navigate to the repository directory.
+-  Install the required dependencies using `pip install -r requirements.txt`.
+-  Run `python main.py` in your terminal.
+    
 1. **Start Python Virtual Environment:**
 Open a terminal window. Navigate to the project directory. Create a new Python virtual environment by running the command:
 ```
