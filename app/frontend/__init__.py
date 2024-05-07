@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import os
 import json
 from dotenv import find_dotenv, load_dotenv
-from app.backend import Backend  
-from app.backend.utils.get_api_limit import print_rates, is_limit_hit
+from app.backend import Backend 
 
 load_dotenv(find_dotenv())
 LOCAL_REPO = os.getenv('LOCAL_REPO')
@@ -25,6 +24,11 @@ def command_prompt():
 def show_files():
 
     if request.method == 'POST':
+
+        # check request data
+        if 'repo_url' not in request.form: 
+            print("Request does not contain 'repo_url'")
+            render_template('select-files.html')
 
         # if local_repo is empty
         cmd_output = ""
@@ -59,8 +63,14 @@ def show_files():
 # route to handle querying
 @app.route('/query', methods=['GET', 'POST'])
 def query_local_database():
-
+    
     if request.method == 'POST':
+
+        # check request data
+        if ('files[]' not in request.form) :
+            print("Request does not contain 'files'")
+            return render_template('query.html')
+
         # get file array
         files = request.form.getlist('files[]')
         file_cmd = 'download'
@@ -78,13 +88,45 @@ def query_local_database():
             print("Downloading all files...")
 
         # download content
-        #cmd_output = backend.execute(user_input=file_cmd)
-        #print (cmd_output)
+        cmd_output = backend.execute(user_input=file_cmd)
+        print (cmd_output)
 
-        return render_template('query.html')
-    
+        # saving content to database
+        print("Saving files to database...")
+        cmd_output = backend.execute(user_input="database")
+        print("Files saved to database")
+        print (cmd_output)
+
     return render_template('query.html')
 
+# route to handle querying
+@app.route('/ai', methods=['GET', 'POST'])
+def ask_ai():
+
+    if request.method == 'POST':
+
+        # retrieve user query
+        query = request.form.getlist('query_input')[0]
+
+        # check request data
+        if (not query) :
+            print("Request does not contain 'query'")
+            return jsonify({'response': "Request does not contain a query."})
+
+        # execute the backend
+        cmd_output = backend.execute(user_input="query '" + query + "'")
+       
+       # check for valid response
+        try:
+            data = json.loads(cmd_output)
+        except json.JSONDecodeError:
+            return jsonify({'response': 'Invalid JSON response from backend'})
+        
+        print(data)
+        
+        return jsonify(data)
+    
+    return jsonify({'error': "Not a POST request."})
 
 # run
 if __name__ == '__main__':

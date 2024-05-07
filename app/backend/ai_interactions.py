@@ -18,6 +18,8 @@ CHROMA_PATH = os.getenv("CHROMA_PATH")
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
 
+--- Beginning of context ---
+
 {context}
 
 --- End of context ---
@@ -27,17 +29,13 @@ Answer the question based on the above context: {question}
 
 # prompt_text = "Your main goal is to help the client build a README.md file. This readme file will describe a users github repository. The user will send a long string of files that he or she has chosen from their codebase that they believe is most relevant code regarding their project. You will read this code, interpret its goal, and construct a satisfactory README.md file. \n\n"
 
-def main(total_snippets=10, relevance=0.25):
-    # Create CLI.
-    parser = argparse.ArgumentParser()
-    parser.add_argument("query_text", type=str, help="The query text.")
-    args = parser.parse_args()
-    query_text = args.query_text
+def query_ai(prompt="", total_snippets=15, relevance=0.25):
+    query_text = prompt
 
     # Check if the API key is loaded correctly
     if OPENAI_API_KEY is None:
         print("Error: OPEN_AI_KEY environment variable is not set.")
-        return
+        return { "response_status": "OPEN_AI_KEY environment variable is not set." }
 
     # Prepare the DB.
     embedding_function = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
@@ -47,7 +45,7 @@ def main(total_snippets=10, relevance=0.25):
     results = db.similarity_search_with_relevance_scores(query_text, k=total_snippets)
     if len(results) == 0 or results[0][1] < relevance:
         print(f"Unable to find matching results.")
-        return
+        return { "response_status": "Unable to find matching results." }
 
     # Sort the results chronologically
     sorted_results = sorted(results, key=lambda x: x[0].metadata.get("timestamp", 0))
@@ -56,7 +54,7 @@ def main(total_snippets=10, relevance=0.25):
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in sorted_results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
-    print(prompt)
+    #print(prompt)
 
     model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model=OPEN_AI_MODEL)
     response_text = model.predict(prompt)
@@ -64,7 +62,7 @@ def main(total_snippets=10, relevance=0.25):
     # format response
     sources = [doc.metadata.get("source", None) for doc, _score in sorted_results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
-    print(formatted_response)
+    #print(formatted_response)
 
     # count tokens
     tokens_in = count_tokens(prompt)
@@ -75,14 +73,16 @@ def main(total_snippets=10, relevance=0.25):
 
     # return collected data
     data = { 
+            "response_status": "ok",
             "tokens_in": tokens_in,
             "tokens_out": tokens_out, 
             "price": price, 
             "prompt": prompt,
-            "response": formatted_response 
+            "response": response_text,
+            "sources" :  sources,
+            "formatted_response": formatted_response 
             }
     
-    print(data)
     return data
 
 
@@ -100,6 +100,15 @@ def calculate_price(tokens_in, tokens_out) :
     
     price = "{:.7f}".format(price)
     return price
+
+
+def main() :
+     # Create CLI.
+    parser = argparse.ArgumentParser()
+    parser.add_argument("query_text", type=str, help="The query text.")
+    args = parser.parse_args()
+    query_text = args.query_text
+    query_ai(query_text)
 
 if __name__ == "__main__":
     main()

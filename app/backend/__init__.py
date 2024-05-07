@@ -1,10 +1,12 @@
 import os
 import logging
 import re
-
+from json import dumps as jsonDumps
 from app.backend.utils.file_manager import Filer
 from app.backend.utils.ai_interactions import AI_Interactions
 from app.backend.repo_retrieval import RepoRetrieval
+from app.backend.create_database import generate_database
+from app.backend.ai_interactions import query_ai
 
 filer = Filer() # for utility functions
 aii = AI_Interactions()
@@ -47,7 +49,8 @@ class Backend():
                 "\nstructure : collect the repository file structure"
                 "\ndownload : retrieve a github repository"
                 "\ndownload <file_name> <file_name> ... : retrieve specific files from a github repository"
-                "\ndownload <directory_location> : retrieve a folder from a  github repository"
+                "\ndatabase : cluster and store data in a data structure"
+                "\nquery <query_string> : query open ai about the data"
                 "\ndelete : clear the current downloaded files"
                 "\n")
  
@@ -98,6 +101,36 @@ class Backend():
         elif user_input == "structure" :
             rr.retrieve_file_structure()
             return self.print_to_user("Saved file structure.")
+        
+        # database : cluster and store data in a data structure
+        elif commands[0] == "database":
+            print("Generating database...")
+            generate_database()
+            return self.print_to_user("Generated database.")
+    
+        # query : query open ai about the data
+        elif commands[0] == "query":
+            # stitch together command
+            joined_commands = " ".join(commands)
+            print(joined_commands)
+            commands = joined_commands.split(maxsplit=1)
+
+            # check for valid query
+            if (len(commands) != 2) :
+                self.print_to_user("Must input a query as an argument.")
+                return jsonDumps({'response': 'Must input a query as an argument.'})
+            
+            self.print_to_user("Querying ai with prompt...")
+            prompt = commands[1]
+            response = query_ai(prompt)
+            response = jsonDumps(response)
+            print("++++++++++ ", response)
+            
+            if (response == {}) :
+                self.print_to_user("No data returned.")
+            
+            #return self.print_to_user(response)
+            return response
 
         # unknown command
         else :

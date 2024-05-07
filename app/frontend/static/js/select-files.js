@@ -36,6 +36,7 @@ $(document).ready(function () {
 
     // confirm all files button
     $("#confirmAll").click(function (event) {
+        event.preventDefault();
         // build array
         let filePaths = [];
         document.querySelectorAll('input[type="checkbox"].form-check-input').forEach(function (checkbox) {
@@ -48,6 +49,9 @@ $(document).ready(function () {
 
     // confirm selected files button
     $("#confirmSelected").click(function (event) {
+        event.preventDefault();
+        $("#loading").html("Downloading files. This may take a while depending on the number of files...");
+
         // build array
         let filePaths = [];
         document.querySelectorAll('input[type="checkbox"].form-check-input:checked').forEach(function (checkbox) {
@@ -123,6 +127,7 @@ function recursive_json_parse(structure) {
 
     return html;
 }
+
 // send an AJAX request to the backend
 function send_files(array) {
     $.ajax({
@@ -131,6 +136,7 @@ function send_files(array) {
         data: { files: array },
         success: function (response) {
             console.log("Response from server:", response);
+            window.location.href = "/query";
         },
         error: function (error) {
             console.error("Error:", error);
