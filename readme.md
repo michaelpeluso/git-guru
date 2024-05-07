@@ -24,6 +24,10 @@ This project is a GitHub README.md generator. It generates a comprehensive READM
 ## Requirements and Dependencies
 - Python 3.8
 - `app` module dependencies
+- Flask
+- jQuery
+- Bootstrap
+- GitHub API
 - Your Github repository URL
 
 ## Installation and Execution Instructions
@@ -38,12 +42,22 @@ The configuration file is `package-lock.json` which contains information about t
 ## File Structure
 ```
 .
+├── app
+│ ├── backend
+│ │ ├── __init__.py
+│ │ ├── ai_interactions.py
+│ │ ├── create_database.py
+│ │ └── repo_retrieval.py
+│ └── frontend
+│ └── static
+│ └── js
+│ ├── index.js
+│ ├── query.js
+│ └── select-files.js
 ├── main.py
 ├── package-lock.json
-├── pytest.ini
 ├── readme.md
 ├── requirements.txt
-└── tests
 └── __init__.py
 ```
 
