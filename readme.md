@@ -16,13 +16,12 @@
 This project is a GitHub README.md generator. It generates a comprehensive README.md file for your Github repository based on a set of provided code snippets. The generated README.md is designed to be comprehensive and long, filling more than a page.
 
 ## Features
-- Generates a custom README.md file
-- Interprets and describes the goal of your code
-- Extracts relevant information from your code snippets
+- Automatic generation of README.md files based on provided code snippets
+- Detection of syntax errors in the code snippets for improved clarity
+- Querying functionality to extract relevant information from the codebase
 - Provides a visual file structure tree using `file_structure.json`
 
 ## Setup and Execution Instructions
-
 1. **Start Python Virtual Environment:**
 Open a terminal window. Navigate to the project directory. Create a new Python virtual environment by running the command:
 ```
@@ -58,13 +57,12 @@ To run the backend functionality in the terminal, use:
 python main.py backend
 ```
 
-## Requirements and Dependencies
+### Requirements and Dependencies:
 - Python 3.8
-- `app` module dependencies
-- Flask
-- jQuery
-- Bootstrap
-- GitHub API
+- Required Python packages specified in the `requirements.txt` file
+- OpenAI API key (obtain from OpenAI platform)
+- Local repository directory path for storing project files
+- Chroma path for vectorstore operations
 - Your Github repository URL
 
 ## Installation and Execution Instructions
@@ -85,6 +83,9 @@ The configuration file is `package-lock.json` which contains information about t
 │ │ ├── ai_interactions.py
 │ │ ├── create_database.py
 │ │ └── repo_retrieval.py
+│ │ ├── utils
+│ │ │ ├── ai_interactions.py
+│ │ │ └── file_manager.py
 │ └── frontend
 │ └── static
 │ └── js
@@ -101,9 +102,6 @@ The configuration file is `package-lock.json` which contains information about t
 ## Troubleshooting and FAQ
 - If you encounter any issues during the installation process, please ensure you have the correct versions of Python and pip installed.
 - If the README.md file is not generating as expected, ensure that your code snippets are relevant to your project.
-
-## Contribution
-We welcome contributions from the community. Please submit your pull requests for review. If you have any questions or need further information, feel free to reach out to us.
 
 ---
 Please note that this README.md file is generated and may not reflect the actual project's README.md file.
