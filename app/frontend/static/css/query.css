@@ -1,0 +1,57 @@
+/* Textarea with Input Box Style */
+.expand textarea {
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-bottom: solid #212529;
+    width: 100%;
+    background-color: transparent;
+    transition: 0.15s;
+    resize: none;
+    white-space: pre-wrap;
+    overflow-y: hidden;
+}
+.expand {
+    display: inline-block;
+    position: relative;
+}
+.expand textarea:hover {
+    border-bottom: solid #343a40;
+}
+.search_bar_border {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: calc(100% - 20px); /* Adjusted width to match textarea padding */
+    bottom: 5px;
+    left: 0;
+    background: white;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+    transform-origin: 0% 50%;
+}
+textarea:not(:placeholder-shown) + .border,
+textarea:focus + .border,
+.expand:focus-within .border {
+    /* Added :focus-within for parent */
+    width: 100%; /* Ensure the border extends all the way */
+    transform: scaleX(1);
+}
+
+/* large devices */
+@media (max-width: 1000px) {
+    .all-buttons {
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+    }
+}
+
+/* small devices */
+@media (max-width: 600px) {
+    .all-buttons {
+        flex-direction: column;
+        width: 75%;
+        margin: auto;
+    }
+}

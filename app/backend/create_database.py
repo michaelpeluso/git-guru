@@ -13,10 +13,8 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 LOCAL_REPO = os.getenv('LOCAL_REPO')
 CHROMA_PATH = os.getenv('CHROMA_PATH')
 
-def main():
-    generate_data_store()
-
-def generate_data_store():
+def generate_database():
+    init_dir()
     documents = load_documents()
     chunks = split_text(documents)
     save_to_chroma(chunks)
@@ -52,7 +50,7 @@ def create_document(file_path):
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
-        chunk_overlap=100,
+        chunk_overlap=50,
         length_function=len,
         add_start_index=True,
     )
@@ -75,8 +73,29 @@ def save_to_chroma(chunks: list[Document]):
     db = Chroma.from_documents(
         chunks, OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY), persist_directory=CHROMA_PATH
     )
+
     db.persist()
     print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
 
-if __name__ == "__main__":
-    main()
+# initialize chroma directory 
+def init_dir(clear_dir=True):
+
+    # Check if the directory exists
+    if os.path.exists(CHROMA_PATH):
+        
+        # delete contents
+        if clear_dir:
+            for root, dirs, files in os.walk(CHROMA_PATH):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    os.remove(file_path)
+            
+            print(f"Cleared contents of {CHROMA_PATH}.")
+        
+        else:
+            print(f"Directory {CHROMA_PATH} already exists. Contents not cleared.")
+    
+    # create directory
+    else:
+        os.makedirs(CHROMA_PATH)
+        print(f"Created directory {CHROMA_PATH}.")
