@@ -1,37 +1,58 @@
-# Homework 1 : Create an Agent to perform as a particular job.  I did an example of history teacher and movie advisor, you need to use this repository and watch the **lecture video** [here](https://youtu.be/T2h6mSycMqg).  What I want you to do is practice writing system prompts and see how the agent will obey your commands (or not).  You should change the model to use other models to experiment but you also need to look at how much they cost:
+<sup><sub>This document was generated using the resources within this repository.</sup></sub>
 
-* List of GPT4 Models - [here](https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo)
-* List of GPT3.5 Models - [here](https://platform.openai.com/docs/models/gpt-3-5-turbo)
+# GitHub README.md Generator
 
-* Model Pricing - PAY ATTENTION IT COSTS A LOT FOR SOME MODELS.
-[Pricing is here but scroll down and look at what GPT4 preview costs $60 for 1 million tokens](https://openai.com/pricing)
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Requirements and Dependencies](#requirements-and-dependencies)
+4. [Installation and Execution Instructions](#installation-and-execution-instructions)
+5. [Configuration File](#configuration-file)
+6. [File Structure](#file-structure)
+7. [Troubleshooting and FAQ](#troubleshooting-and-faq)
+8. [Contribution](#contribution)
 
-## Project Setup
+## Project Overview
+This project is a GitHub README.md generator. It generates a comprehensive README.md file for your Github repository based on a set of provided code snippets. The generated README.md is designed to be comprehensive and long, filling more than a page.
 
-1. Clone the repository.
-2. CD into the project folder.
-3. Create and activate the virtual environment (VE).
-4. Install the required libraries.
-5.  Signup for OpenAI Api Key.  Make .env file and put the key in as "open_ai_key=YOUR_KEY"
+## Features
+- Generates a custom README.md file
+- Interprets and describes the goal of your code
+- Extracts relevant information from your code snippets
+- Provides a visual file structure tree using `file_structure.json`
 
-## Testing Commands
+## Requirements and Dependencies
+- Python 3.8
+- `app` module dependencies
+- Your Github repository URL
 
-- Run all tests with `pytest`.
-- To test a specific file, use `pytest tests/test_main.py`.
-- For linting and coverage, `pytest --pylint --cov` commands can be used separately.
+## Installation and Execution Instructions
+1. Clone this repository to your local machine.
+2. Navigate to the repository directory.
+3. Install the required dependencies using `pip install -r requirements.txt`.
+4. Run `python main.py` in your terminal.
 
-## Installed Libraries
+## Configuration File
+The configuration file is `package-lock.json` which contains information about the packages used in this project.
 
-1. [Pytest](https://docs.pytest.org/en/8.0.x/)
-2. [Faker](https://faker.readthedocs.io/en/master/)
-3. [Pytest Coverage](https://pytest-cov.readthedocs.io/en/latest/readme.html)
-4. [Pytest Pylint](https://pylint.readthedocs.io/en/stable/development_guide/contributor_guide/tests/launching_test.html)
-5. [Langchain](https://python.langchain.com/docs/get_started/quickstart)
+## File Structure
+```
+.
+├── main.py
+├── package-lock.json
+├── pytest.ini
+├── readme.md
+├── requirements.txt
+└── tests
+└── __init__.py
+```
 
+## Troubleshooting and FAQ
+- If you encounter any issues during the installation process, please ensure you have the correct versions of Python and pip installed.
+- If the README.md file is not generating as expected, ensure that your code snippets are relevant to your project.
 
-## Adding a Library
+## Contribution
+We welcome contributions from the community. Please submit your pull requests for review. If you have any questions or need further information, feel free to reach out to us.
 
-1. Ensure you're in the correct VE; if unsure, run "deactivate".
-2. Activate the VE.
-3. Update the requirements file with `pip freeze > requirements.txt`.
-
+---
+Please note that this README.md file is generated and may not reflect the actual project's README.md file.
