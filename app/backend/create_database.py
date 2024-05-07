@@ -73,9 +73,9 @@ def save_to_chroma(chunks: list[Document], chunk_size):
         shutil.rmtree(CHROMA_PATH)
 
     # Create a new DB from the documents.
-    db = Chroma.from_documents(
-        chunks, OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY), persist_directory=CHROMA_PATH
-    )
+    model = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY, model="text-embedding-3-small")
+    
+    db = Chroma.from_documents(chunks, model, persist_directory=CHROMA_PATH)
 
     db.persist()
     print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
@@ -109,8 +109,8 @@ def init_dir(clear_dir=True):
         print(f"Error: Insufficient permissions to access or write to directory '{CHROMA_PATH}'.")
 
 def add_log(chunks, chunk_size) :
-    # $0.10 / 1M tokens
-    price_per_token = 0.0000001
+    # $0.0001 to $0.00002 / 1k tokens  
+    price_per_token = 0.00000006
     total_tokens = chunk_size * len(chunks)
     total_cost = price_per_token * total_tokens
     log_api_usage("Embedding", total_tokens, 0, total_cost)

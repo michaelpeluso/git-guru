@@ -55,7 +55,6 @@ def query_ai(prompt="", total_snippets=10, relevance=0.5):
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in sorted_results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
-    #print(prompt)
 
     model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model=OPEN_AI_MODEL)
     response_text = model.predict(prompt)

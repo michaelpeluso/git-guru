@@ -20,49 +20,46 @@ $(document).ready(function () {
         // detect what button is pressed
         // user prompt
         if (event.originalEvent.submitter.id == "submitButton") {
+            query = $("#query_input").val();
+
+            if ($("#query_input").val() == "") {
+                $("#response").html("Please enter a request.");
+                return;
+            }
             $("#response").html("Generating a response...");
-            query = $("#query_input").val() + "\n\nIf you can not answer, simply say 'Unable to answer your request. Please reword your request and try again.' if you cannot provide adequate information.";
+
+            query += "\nIf you cannot provide adequate information, respond with 'Unable to answer your request. Please reword your request and try again.'";
         }
         // syntax prompt
         else if (event.originalEvent.submitter.id == "findErrorsButton") {
             $("#response").html("Searching for errors...");
-            hint = $("#query_input").val();
             query = `
-            Determine the syntax errors in the provided code. Provide the following information for each error:
-            - File location
-            - Line number
-            - Assumed programming language of the file (i.e. "Python", "Java", etc.)
-            - Relevant code lines where the error is apparent
-            - A clear and concise description of the fix required to resolve the error
-            
-            If no errors are found, respond with a confirmation statement (e.g., 'No errors detected.') rather than providing any additional details
-            
-            Here is a hint: ${hint}`;
+            Identify and correct any syntax errors in the following code. Please provide the file location, line number, and clear and concise explanation for each correction made.
+            If no errors are found respond with 'No errors detected.'`;
+
+            hint = $("#query_input").val();
+            query += hint != "" ? `\nHere is a provided request: ${hint}` : "";
         }
         // readme prompt
         else if (event.originalEvent.submitter.id == "buildReadmeButton") {
             $("#response").html("Generating a README.md file...");
-            hint = $("#query_input").val();
             query = `
             Generate a comprehensive README.md file for a GitHub repository based on a set of provided code snippets with slight overlaps. The README.md may include the following relevant sections:
-
-            1. A suitable title and short description
-            2. Table of contents
-            3. Project overview (including popular languages)
-            4. Features
-            5. Requirements and dependencies
-            6. Installation and execution instructions
-            7. Configuration file
-            8. Full file structure tree using 'file_structure.json' (use characters like '├', '│', '─', and '└')
-            9. Troubleshooting
-            10. Any other relevant information for potential users or contributors
-
+            - A suitable title and short description
+            - Table of contents
+            - Project overview (including popular languages)
+            - Features
+            - Requirements and dependencies
+            - Installation and execution
+            - Full file structure tree using 'file_structure.json' (use characters like '├', '│', '─', and '└')
+            - Troubleshooting
+            - Any other relevant information for potential users or contributors
             Don't include the section if there is no information on it.
-
             Please ensure that the README.md file is long and comprehensive, filling several pages. Display the contents as markdown test.
-            Please write the content, DO NOT DESCRIBE HOW TO BUILD ONE.
-            
-            Here is a hint: ${hint}`;
+            Please write the content, DO NOT DESCRIBE HOW TO BUILD ONE.`;
+
+            hint = $("#query_input").val();
+            query += hint != "" ? `\nHere is a provided request: ${hint}` : "";
         } else {
             $("#response").html("Generating a response...");
         }
@@ -73,8 +70,11 @@ $(document).ready(function () {
             data: { query_input: query },
             success: function (data) {
                 console.log("Success:", data);
-                formatted_response = data.response.replace(/\n/g, "<br>");
-                $("#response").html(formatted_response);
+                if (data.response) {
+                    $("#response").html(data.response.replace(/\n/g, "<br>"));
+                } else {
+                    $("#response").html(data.response_status);
+                }
             },
             error: function (error) {
                 console.error("Error:", error);

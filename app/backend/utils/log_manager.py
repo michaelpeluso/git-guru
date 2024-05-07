@@ -41,7 +41,7 @@ def log_api_usage(action, tokens_input, tokens_output, cost):
 
 def update_total_cost(log_file):
     # Read the existing log file and calculate
-    total_cost = 0.0
+    total_cost = 0.0000000
     log_lines = []
     with open(log_file, 'r') as file:
         for line in file:
