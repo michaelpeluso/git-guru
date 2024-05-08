@@ -27,7 +27,6 @@ https://github.com/michaelpeluso/git-guru/assets/94207078/d4856171-46a2-4868-838
 - Python 3.8
 - Required Python packages specified in the `requirements.txt` file
 - OpenAI API key (obtain from OpenAI platform)
-- Local repository directory path for storing project files
 - Chroma path for vectorstore operations
 - Your Github repository URL
 
