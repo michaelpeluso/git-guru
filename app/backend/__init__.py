@@ -121,7 +121,7 @@ class Backend():
             
             self.print_to_user("Querying ai with prompt...")
             prompt = commands[1]
-            response = query_ai(prompt=prompt, total_snippets=20, relevance=0.5)
+            response = query_ai(prompt=prompt, total_snippets=20, relevance=0.25)
             response = jsonDumps(response)
             
             if (response == {}) :

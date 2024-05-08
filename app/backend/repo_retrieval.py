@@ -154,12 +154,15 @@ class RepoRetrieval :
         except Exception as e:
             print(f"ERROR: There was an issue iterating through the file structure: {e}")
         
-        try: 
+        try:
+            # Check if the directory exists; if not, create it
+            if not os.path.exists(self.local_dir):
+                os.makedirs(self.local_dir)
 
-            # save structure as json
-            full_name = os.path.join(self.local_dir, "file_structure.json")
+            # Save structure as JSON
+            full_name = os.path.join(self.local_dir, file_name)
             
-            with open(full_name, "w") as file :
+            with open(full_name, "w") as file:
                 json.dump(formatted_structure, file, indent=4)
 
             print("File structure saved successfully.")

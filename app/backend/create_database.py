@@ -14,7 +14,7 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 LOCAL_REPO = os.getenv('LOCAL_REPO')
 CHROMA_PATH = os.getenv('CHROMA_PATH')
 
-def generate_database(chunk_size=750, chunk_overlap=75):
+def generate_database(chunk_size=1000, chunk_overlap=100):
     init_dir()
     documents = load_documents()
     

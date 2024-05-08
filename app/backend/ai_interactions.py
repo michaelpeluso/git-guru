@@ -30,7 +30,7 @@ Answer the question based on the above context: {question}
 
 # prompt_text = "Your main goal is to help the client build a README.md file. This readme file will describe a users github repository. The user will send a long string of files that he or she has chosen from their codebase that they believe is most relevant code regarding their project. You will read this code, interpret its goal, and construct a satisfactory README.md file. \n\n"
 
-def query_ai(prompt="", total_snippets=10, relevance=0.5):
+def query_ai(prompt="", total_snippets=10, relevance=0.25):
     query_text = prompt
 
     # Check if the API key is loaded correctly
@@ -44,7 +44,8 @@ def query_ai(prompt="", total_snippets=10, relevance=0.5):
 
     # Search the DB.
     results = db.similarity_search_with_relevance_scores(query_text, k=total_snippets)
-    if len(results) == 0 or results[0][1] < relevance:
+    #if len(results) == 0 or results[0][1] < 1: # causes no results
+    if len(results) == 0 :
         print(f"Unable to find matching results.")
         return { "response_status": "Unable to find matching results." }
 
