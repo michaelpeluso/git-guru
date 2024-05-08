@@ -1,15 +1,16 @@
-<sup><sub>This document was generated using only the resources within this repository.</sup></sub>
+<sup><em>This document was generated using only the resources within this repository.</em></sub>
 
 # GitGuru
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Features](#features)
-3. [Requirements and Dependencies](#requirements-and-dependencies)
-4. [Installation and Execution](#installation-and-execution-instructions)
-5. [File Structure](#file-structure)
-6. [Logging System](#logging-system)
-7. [Troubleshooting and FAQ](#troubleshooting-and-faq)
+3. [Demo](#demo)
+4. [Requirements and Dependencies](#requirements-and-dependencies)
+5. [Installation and Execution](#installation-and-execution-instructions)
+6. [File Structure](#file-structure)
+7. [Logging System](#logging-system)
+8. [Troubleshooting and FAQ](#troubleshooting-and-faq)
 
 ## Project Overview
 The GitGuru project is designed to streamline the process of generating a custom README.md file for GitHub repositories. It leverages artificial intelligence to analyze code snippets and create a comprehensive README.md document.
@@ -18,6 +19,9 @@ The GitGuru project is designed to streamline the process of generating a custom
 - AI-Powered README Generation
 - Error Detection
 - Inquiry-Based Assistance
+
+## Demo
+https://github.com/michaelpeluso/git-guru/assets/94207078/d4856171-46a2-4868-8383-659f046b4f7c
 
 ### Requirements and Dependencies:
 - Python 3.8
