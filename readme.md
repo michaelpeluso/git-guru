@@ -108,7 +108,6 @@ The logging system in this project is designed to track API usage and store rele
 │ │ │ ├── index.html
 │ │ │ ├── query.html
 │ └ └ └── select-files.html
-├── README.md
 ├── __init__.py
 ├── main.py
 ├── package-lock.json
