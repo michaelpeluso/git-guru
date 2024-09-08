@@ -20,6 +20,15 @@ The GitGuru project is designed to streamline the process of generating a custom
 - Error Detection
 - Inquiry-Based Assistance
 
+### Slicing
+Slicing refers to the process of dividing code snippets into manageable segments. This allows the AI to analyze smaller blocks of code rather than overwhelming it with large chunks. By breaking down the input, the system can focus on understanding the functionality and purpose of each segment, leading to more accurate and relevant README generation.
+
+### Embedding
+Embedding is a technique used to convert code snippets into numerical representations that capture semantic meaning. This transformation allows the AI to understand the relationships between various pieces of code and their contexts. By embedding code snippets, the system can effectively gauge their relevance to the overall project, enhancing the quality of the generated documentation.
+
+### Storing in the Database
+The project makes use of a robust database system to store embedded representations of the code snippets. This storage allows for quick retrieval and analysis of previously processed snippets, enabling the AI to draw from a wealth of information when generating documentation. The database is designed to maintain efficiency and speed, ensuring that the AI can operate without lag, even when processing extensive codebases.
+
 ## Demo
 https://github.com/michaelpeluso/git-guru/assets/94207078/d4856171-46a2-4868-8383-659f046b4f7c
 
