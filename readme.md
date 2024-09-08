@@ -95,7 +95,7 @@ The logging system in this project is designed to track API usage and store rele
             ├── get_api_limit.py
             └── log_manager.py
     └── frontend
-        ├── static
+        └── static
             └── css
                 ├── global.css
                 ├── index.css
