@@ -80,39 +80,41 @@ The logging system in this project is designed to track API usage and store rele
 ## File Structure
 ```
 .
+.
 ├── .gitignore
 ├── .gitmodules
 └── app
-│ ├── __init__.py
-│ └── backend
-│ │ ├── __init__.py
-│ │ ├── create_database.py
-│ │ ├── repo_retrieval.py
-│ │ └── utils
-│ │ │ ├── ai_interactions.py
-│ │ │ ├── file_manager.py
-│ │ │ ├── get_api_limit.py
-│ │ └ └── log_manager.py
-│ └── frontend
-│ │ ├── static
-│ │ │ └── css
-│ │ │ │ ├── global.css
-│ │ │ │ ├── index.css
-│ │ │ │ ├── query.css
-│ │ │ │ └── select-files.css
-│ │ │ └── js
-│ │ │ │ ├── index.js
-│ │ │ │ ├── query.js
-│ │ │ └ └── select-files.css
-│ │ └── templates
-│ │ │ ├── index.html
-│ │ │ ├── query.html
-│ └ └ └── select-files.html
+    ├── __init__.py
+    └── backend
+        ├── __init__.py
+        ├── create_database.py
+        ├── repo_retrieval.py
+        └── utils
+            ├── ai_interactions.py
+            ├── file_manager.py
+            ├── get_api_limit.py
+            └── log_manager.py
+    └── frontend
+        ├── static
+            └── css
+                ├── global.css
+                ├── index.css
+                ├── query.css
+                └── select-files.css
+            └── js
+                ├── index.js
+                ├── query.js
+                └── select-files.js
+        └── templates
+            ├── index.html
+            ├── query.html
+            └── select-files.html
 ├── __init__.py
 ├── main.py
 ├── package-lock.json
 ├── readme.md
 └── requirements.txt
+
 ```
 
 ## Troubleshooting and FAQ
