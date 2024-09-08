@@ -1,4 +1,4 @@
-<sup><em>This document was generated using only the resources within this repository.</em></sub>
+<sub><em>This document was generated using only the resources within this repository - minus the live demo.</sub></em>
 
 # GitGuru
 
